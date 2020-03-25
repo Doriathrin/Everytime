@@ -1,18 +1,44 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="Home">
+    <Banner></Banner>
+    <Navigation></Navigation>
+    <Specialbar></Specialbar>
+    <FooterTabbar></FooterTabbar>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import Specialbar from '@/components/Specialbar'
+import Navigation from '@/components/Navigation'
+import Banner from '@/components/Banner'
+import FooterTabbar from '@/components/FooterTabbar'
 export default {
   name: 'Home',
   components: {
-    HelloWorld
-  }
-}
+    FooterTabbar,
+    Banner,
+    Navigation,
+    Specialbar
+  },
+  data() { 
+    return {
+      
+    }
+  },
+  methods: {
+
+  },
+  mounted() {
+
+  },
+ }
 </script>
+
+<style lang="scss" scoped>
+*{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+</style>
