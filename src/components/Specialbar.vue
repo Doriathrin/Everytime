@@ -31,9 +31,10 @@ export default {
   background: red;
   h5{
     width:100%;
-    height:100px;
+    height:50px;
     background: #fafafa;
-    line-height: 100px;
+    line-height: 50px;
+    font-size: 20px;
   }
 }
 </style>

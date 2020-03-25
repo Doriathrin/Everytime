@@ -56,17 +56,18 @@ export default {
       display: flex;
       justify-content: space-around;
       align-items: center;
-      font-size: 15px;
+      font-size: 12px;
       li{
         line-height: 50px;
+        margin-top: 5px;
         img{
-          width:25px;
-          height:25px;
+          width:22px;
+          height:22px;
           display: block;
           margin: 0 auto; 
         }
         a{
-          margin-top: -10px;
+          margin-top: -15px;
           display: block;
           text-align: center;
           color:#000000;

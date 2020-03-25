@@ -37,7 +37,7 @@ export default {
 <style lang="scss" scoped>
 .naviGation{
   width:100%;
-  height:175px;
+  height:100px;
   // background: red;
   display: block;
   ul{
@@ -47,16 +47,17 @@ export default {
     li{
       margin-top: 30px;
       line-height: 50px;
-      font-size:20px;
+      font-size:16px;
       img{
-        width:70px;
-        height:70px;
+        width:50px;
+        height:50px;
         display: block;
         margin: 0 auto;
       }
       a{
         display: block;
         text-align: center;
+        color:#000000;
       }
     }
   }

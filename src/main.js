@@ -6,6 +6,7 @@ import 'amfe-flexible/index'
 import './assets/border.css'
 import Vant from 'vant'
 import 'vant/lib/index.css'
+import './assets/iconfont.css'
 import { Lazyload } from 'vant';
 import vueResource from 'vue-resource'
 
