@@ -5,5 +5,10 @@
 </template>
 
 <style lang="scss">
-
+*{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+}
 </style>

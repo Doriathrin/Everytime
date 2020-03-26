@@ -45,7 +45,7 @@ export default {
     align-items: center;
     justify-content: space-around;
     li{
-      margin-top: 30px;
+      margin-top: 10px;
       line-height: 50px;
       font-size:16px;
       img{
@@ -55,6 +55,7 @@ export default {
         margin: 0 auto;
       }
       a{
+        margin-top: -5px;
         display: block;
         text-align: center;
         color:#000000;

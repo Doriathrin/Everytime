@@ -3,11 +3,13 @@
     <Banner></Banner>
     <Navigation></Navigation>
     <Specialbar></Specialbar>
+    <Todaystopic></Todaystopic>
     <FooterTabbar></FooterTabbar>
   </div>
 </template>
 
 <script>
+import Todaystopic from '@/components/Todaystopic'
 import Specialbar from '@/components/Specialbar'
 import Navigation from '@/components/Navigation'
 import Banner from '@/components/Banner'
@@ -18,7 +20,8 @@ export default {
     FooterTabbar,
     Banner,
     Navigation,
-    Specialbar
+    Specialbar,
+    Todaystopic
   },
   data() { 
     return {
@@ -35,10 +38,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-*{
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  box-sizing: border-box;
-}
+
 </style>
