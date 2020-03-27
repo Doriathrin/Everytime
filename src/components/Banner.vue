@@ -22,10 +22,14 @@ export default {
     }
   },
   methods: {
-
+    banner(){
+      this.$api.banner.apiBanner().then((res)=>{
+        console.log(res);
+      })
+    }
   },
   mounted() {
-
+    this.banner();
   },
  }
 </script>
@@ -40,10 +44,14 @@ export default {
 }
 .banner{
   width:100%;
-  height:300px;
+  height:200px;
+  .van-swipe__indicators{
+    position: absolute;
+    bottom:49.5px;
+  }
   img{
     width:100%;
-    height: 300px;
+    height:100%;
   }
 }
 </style>

@@ -1,22 +1,14 @@
 <template>
-  <div class="specialBar">
-    <h5 class='lwq-zhuanTi'>
-      <i class='iconfont'>&#xe600;</i>
-      专题
-    </h5>
-    <div class='lwq-yasi'>
-      <div class='lwq-zuo'>
-        <h5>雅思语法专题</h5>
-        <img src="../assets/images/B_06.jpg" alt="">
-      </div>
-      <div class='lwq-yo'>
-        <div class="lwq-yo-shang">
-          <img src="../assets/images/B_09.jpg" alt="">
-          <h5>雅思语法专题</h5>
-        </div>
-        <div class="lwq-yo-xia">
-          <img src="../assets/images/B_03.jpg" alt="">
-          <h5>雅思写作专题</h5>
+  <div class="specialBar"  >
+    <div v-for='(item,index) in listData'>
+      <h5 class='lwq-zhuanTi'>
+        <i class='iconfont'>&#xe600;</i>
+        {{item.channel_info.name}}
+      </h5>
+      <div class='lwq-yasi' v-for="(v,i) in item.list">
+        <div class='lwq-zuo'>
+          {{v.title}}
+          {{v.teacher_name}}
         </div>
       </div>
     </div>
@@ -28,14 +20,20 @@ export default {
   name: 'Specialbar',
   data() { 
     return {
-
+      listData:[],
     }
   },
   methods: {
-
+    onLoad(id) {      
+      this.$api.article.articleList().then(res=> {
+        console.log(res);
+        this.listData=res.data.data;
+        console.log(res.data.data);
+      })    
+    }
   },
   mounted() {
-
+    this.onLoad();
   },
  }
 </script>

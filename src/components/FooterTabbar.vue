@@ -32,14 +32,10 @@ export default {
     }
   },
   methods: {
-    onLoad(id) {      
-        this.$api.article.articleList().then(res=> {
-          console.log(res);
-        })    
-    }
+    
   },
   mounted() {
-    this.onLoad();
+    
   },
  }
 </script>

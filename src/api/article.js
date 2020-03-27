@@ -16,9 +16,15 @@ const article = {
       params: params
     });
   },
+  articleBanner(id, params) {
+    return axios.get(`${base.banner}/app/banner`);
+  },
   // post提交    
   login(params) {
     return axios.post(`${base.sq}/accesstoken`, qs.stringify(params));
+  },
+  banner(params) {
+    return axios.post(`${base.banner}/accesstoken`, qs.stringify(params));
   }
   // 其他接口…………
 }

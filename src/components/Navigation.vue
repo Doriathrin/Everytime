@@ -2,16 +2,16 @@
   <div class="naviGation">
     <ul>
       <li>
-        <img src="../assets/images/icon-msg-course.png" alt="">
-        <a href="#">名师</a>
+        <img src="../assets/images/index-kinds-course.png" alt="">
+        <a href="#">特色课</a>
       </li>
       <li>
-        <img src="../assets/images/icon-msg-exam.png" alt="">
-        <a href="#">课表</a>
+        <img src="../assets/images/index-kinds-one.png" alt="">
+        <a href="#">一对一辅导</a>
       </li>
       <li>
-        <img src="../assets/images/icon-msg-order.png" alt="">
-        <a href="#">约课</a>
+        <img src="../assets/images/index-kinds-study.png" alt="">
+        <a href="#">学习日历</a>
       </li>
     </ul>
   </div>
@@ -38,27 +38,34 @@ export default {
 .naviGation{
   width:100%;
   height:100px;
-  // background: red;
+  background: #FAFAFA;
   display: block;
   ul{
     display: flex;
     align-items: center;
     justify-content: space-around;
     li{
-      margin-top: 10px;
+      position: relative;
+      top:-15px;
+      width:100px;
+      height:100px;
+      background: white;
+      border-radius: 5px;
       line-height: 50px;
       font-size:16px;
       img{
-        width:50px;
-        height:50px;
+        width:20px;
+        height:20px;
         display: block;
         margin: 0 auto;
+        margin-top: 25px;
       }
       a{
+        font-size: 13px;
         margin-top: -5px;
         display: block;
         text-align: center;
-        color:#000000;
+        color:#8c8c8c;
       }
     }
   }
