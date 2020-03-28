@@ -1,16 +1,17 @@
 <template>
-  <div class="specialBar"  >
-    <div v-for='(item,index) in listData'>
+  <div class="specialBar"  > 
+    <div class='lwq-tuijian'>
       <h5 class='lwq-zhuanTi'>
         <i class='iconfont'>&#xe600;</i>
-        {{item.channel_info.name}}
-      </h5>
-      <div class='lwq-yasi' v-for="(v,i) in item.list">
-        <div class='lwq-zuo'>
-          {{v.title}}
-          {{v.teacher_name}}
-        </div>
-      </div>
+        {{listData[0].channel_info.name}}
+      </h5> 
+      <dl v-for='(item,index) in listData[0].list' :key='index' class='lwq-laoshi'>
+        <dt><img :src="item.teachers_list[0].teacher_avatar" alt=""></dt>
+        <dd>
+          {{item.teachers_list[0].teacher_name}}
+          <p>黄老师，特级讲师</p>
+        </dd>
+      </dl>
     </div>
   </div>
 </template>
@@ -42,47 +43,31 @@ export default {
 .specialBar{
   width:100%;
   height:200px;
-  .lwq-zhuanTi{
+  .lwq-tuijian{
     width:100%;
-    height:50px;
+    height:300px;
     background: #fafafa;
     line-height: 50px;
     font-size: 20px;
-  }
-  .lwq-yasi{
-    width:100%;
-    height:300px;
-    display: flex;
-    .lwq-zuo{
-      width:175px;
-      height:150px;
-      border-right:1px solid #fafafa;
-      line-height: 50px;
-      padding-left: 30px;
+    
+    .lwq-laoshi{
+      font-size:15px;
+      margin: 0 auto;
+      margin-top: 10px;
+      width:350px;
+      height:100px;
+      background: white;
+      display: flex;
       img{
-        width:100px;
-        height:100px;
-      }
-    }
-    .lwq-yo{
-      width:175px;
-      height:150px;
-      .lwq-yo-shang{
-        display: flex;
-        align-items: center;
-        width:200px;
-        height:80px;
-        border-bottom:1px solid #fafafa;
-      }
-      .lwq-yo-xia{
-        width:200px;
-        height:80px;
-        display: flex;
-        align-items: center;
-      }
-      img{
+        margin-top: 25px;
         width:50px;
         height:50px;
+        border-radius: 50px;
+        margin-left: 15px;
+      }
+      dd{
+        margin-left: 10px;
+        
       }
     }
   }

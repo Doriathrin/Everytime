@@ -1,9 +1,9 @@
 <template>
   <div class="Todaystopic">
-    <h5 class='lwq-zhuanTi'>
+    <!-- <h5 class='lwq-zhuanTi'>
       <i class='iconfont'>&#xe600;</i>
       今日直播
-    </h5>
+    </h5> -->
   </div>
 </template>
 
