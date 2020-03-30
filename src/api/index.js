@@ -8,10 +8,13 @@ import article from '@/api/article';
 import banner from '@/api/banner'
 // 分类
 import course from '@/api/courseClassify'
+// 特色课
+import courseBasis from '@/api/courseBasis'
 // 导出接口
 export default {
   article,
   banner,
-  course
+  course,
+  courseBasis
   // ……
 }
