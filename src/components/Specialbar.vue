@@ -13,6 +13,43 @@
         </dd>
       </dl>
     </div>
+    <div class='lwq-tuijian'>
+      <h5 class='lwq-zhuanTi'>
+        <i class='iconfont'>&#xe600;</i>
+        {{listData[1].channel_info.name}}
+      </h5> 
+      <dl v-for='(item,index) in listData[1].list' :key='index' class='lwq-laoshi'>
+        <dt><img :src="item.teachers_list.teacher_avatar" alt=""></dt>
+        <dd>
+          {{item.title}}
+          {{item.teachers_list.teacher_name}}
+        </dd>
+      </dl>
+    </div>
+    <div class='lwq-tuijian-tjian'>
+      <h5 class='lwq-zhuanTi'>
+        <i class='iconfont'>&#xe600;</i>
+        {{listData[2].channel_info.name}}
+      </h5> 
+      <dl v-for='(item,index) in listData[2].list' :key='index' class='lwq-laoshi'>
+        <dt><img :src="item.teacher_avatar" alt=""></dt>
+        <dd>
+          {{item.teacher_name}}
+        </dd>
+      </dl>
+    </div>
+    <div class='lwq-tuijian'>
+      <h5 class='lwq-zhuanTi'>
+        <i class='iconfont'>&#xe600;</i>
+        {{listData[3].channel_info.name}}
+      </h5> 
+      <dl v-for='(item,index) in listData[3].list' :key='index' class='lwq-laoshi'>
+        <dt><img :src="item.teacher_avatar" alt=""></dt>
+        <dd>
+          {{item.teacher_name}}
+        </dd>
+      </dl>
+    </div>
   </div>
 </template>
 
@@ -43,13 +80,12 @@ export default {
 .specialBar{
   width:100%;
   height:200px;
-  .lwq-tuijian{
+  .lwq-tuijian-tjian{
     width:100%;
-    height:300px;
+    height:500px;
     background: #fafafa;
     line-height: 50px;
     font-size: 20px;
-    
     .lwq-laoshi{
       font-size:15px;
       margin: 0 auto;
@@ -67,7 +103,32 @@ export default {
       }
       dd{
         margin-left: 10px;
-        
+      }
+    }
+  }
+  .lwq-tuijian{
+    width:100%;
+    height:300px;
+    background: #fafafa;
+    line-height: 50px;
+    font-size: 20px;
+    .lwq-laoshi{
+      font-size:15px;
+      margin: 0 auto;
+      margin-top: 10px;
+      width:350px;
+      height:100px;
+      background: white;
+      display: flex;
+      img{
+        margin-top: 25px;
+        width:50px;
+        height:50px;
+        border-radius: 50px;
+        margin-left: 15px;
+      }
+      dd{
+        margin-left: 10px;
       }
     }
   }

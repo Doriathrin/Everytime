@@ -4,10 +4,14 @@
 // 文章模块接口
 import article from '@/api/article';
 // 其他模块的接口……
-import banner from '../api/banner'
+// 轮播图
+import banner from '@/api/banner'
+// 分类
+import course from '@/api/courseClassify'
 // 导出接口
 export default {
   article,
-  banner
+  banner,
+  course
   // ……
 }
