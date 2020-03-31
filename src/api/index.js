@@ -10,11 +10,14 @@ import banner from '@/api/banner'
 import course from '@/api/courseClassify'
 // 特色课
 import courseBasis from '@/api/courseBasis'
+// 课程详情
+import courseInfo from '@/api/courseInfo'
 // 导出接口
 export default {
   article,
   banner,
   course,
-  courseBasis
+  courseBasis,
+  courseInfo
   // ……
 }

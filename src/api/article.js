@@ -7,8 +7,8 @@ import qs from 'qs'; // 根据需求是否导入qs模块
 
 const article = {
   // 新闻列表    
-  articleList() {
-    return axios.get(`${base.sq}/recommend/appIndex`);
+  articleList(id, params) {
+    return axios.get(`${base.sq}/recommend/appIndex?id==${id}`);
   },
   // 新闻详情,演示    
   articleDetail(id, params) {

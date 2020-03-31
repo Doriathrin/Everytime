@@ -2,10 +2,10 @@
   <div class="specialBar"  > 
     <div class='lwq-tuijian'>
       <h5 class='lwq-zhuanTi'>
-        <i class='iconfont'>&#xe600;</i>
+        <i class='iconfont'>&#xe62a;</i>
         {{listData[0].channel_info.name}}
       </h5> 
-      <dl v-for='(item,index) in listData[0].list' :key='index' class='lwq-laoshi'>
+      <dl v-for='(item,index) in listData[0].list' :key='index' class='lwq-laoshi' @click="details(item.id)">
         <dt><img :src="item.teachers_list[0].teacher_avatar" alt=""></dt>
         <dd>
           {{item.teachers_list[0].teacher_name}}
@@ -15,10 +15,10 @@
     </div>
     <div class='lwq-tuijian'>
       <h5 class='lwq-zhuanTi'>
-        <i class='iconfont'>&#xe600;</i>
+        <i class='iconfont'>&#xe62a;</i>
         {{listData[1].channel_info.name}}
       </h5> 
-      <dl v-for='(item,index) in listData[1].list' :key='index' class='lwq-laoshi'>
+      <dl v-for='(item,index) in listData[1].list' :key='index' class='lwq-laoshi' @click="details(item.id)">
         <dt><img :src="item.teachers_list.teacher_avatar" alt=""></dt>
         <dd>
           {{item.title}}
@@ -28,10 +28,10 @@
     </div>
     <div class='lwq-tuijian-tjian'>
       <h5 class='lwq-zhuanTi'>
-        <i class='iconfont'>&#xe600;</i>
+        <i class='iconfont'>&#xe62a;</i>
         {{listData[2].channel_info.name}}
       </h5> 
-      <dl v-for='(item,index) in listData[2].list' :key='index' class='lwq-laoshi'>
+      <dl v-for='(item,index) in listData[2].list' :key='index' class='lwq-laoshi' @click="details(item.teacher_id)">
         <dt><img :src="item.teacher_avatar" alt=""></dt>
         <dd>
           {{item.teacher_name}}
@@ -40,10 +40,10 @@
     </div>
     <div class='lwq-tuijian'>
       <h5 class='lwq-zhuanTi'>
-        <i class='iconfont'>&#xe600;</i>
+        <i class='iconfont'>&#xe62a;</i>
         {{listData[3].channel_info.name}}
       </h5> 
-      <dl v-for='(item,index) in listData[3].list' :key='index' class='lwq-laoshi'>
+      <dl v-for='(item,index) in listData[3].list' :key='index' class='lwq-laoshi' @click="details(item.teacher_id)">
         <dt><img :src="item.teacher_avatar" alt=""></dt>
         <dd>
           {{item.teacher_name}}
@@ -68,6 +68,9 @@ export default {
         this.listData=res.data.data;
         console.log(res.data.data);
       })    
+    },
+    details(id){
+      this.$router.push({path:'/details',query:{'id':id}})
     }
   },
   mounted() {

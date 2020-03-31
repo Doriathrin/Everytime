@@ -23,45 +23,58 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: (resolve) => {
-      require(['@/views/Home'], resolve)
+    component: () => import('@/views/Home'),
+    meta: {
+      title:'首页'
     }
+    
   },
   {
     path: '/course',
     name: 'Course',
     // 在路由内
-    component: () => import('@/course/Course')
+    component: () => import('@/course/Course'),
+    meta: {
+      title:'特色课'
+    }
   },
   {
     path: '/records',
     name: 'Records',
-    component: (resolve) => {
-      require(['@/records/records'], resolve)
-    }
+    component: () => import('@/records/records'),
+      
+    
   },
   {
     path: '/persona',
     name: 'Persona',
-    component: (resolve) => {
-      require(['@/persona/Persona'], resolve)
-    }
+    component: () => import('@/persona/Persona')
+      
+    
   },
   {
     path: '/Practise',
     name: 'Practise',
-    component: (resolve) => {
-      require(['@/practise/Practise'], resolve)
-    }
+    component: () => import('@/practise/Practise')
+      
+    
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path: '/details',
+    name: 'Details',
+    component: () => import('@/details/Details'),
+    meta: { 
+      title:'课程详情'
+    }
+  },
+  // {
+  //   path: '/about',
+  //   name: 'About',
+  //   // route level code-splitting
+  //   // this generates a separate chunk (about.[hash].js) for this route
+  //   // which is lazy-loaded when the route is visited.
+  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  // }
 ]
 
 const router = new VueRouter({
