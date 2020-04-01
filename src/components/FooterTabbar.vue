@@ -17,7 +17,7 @@ export default {
   data () {
     return {
       fontname:"/",
-      user_id:'111111111',
+      user_id:'',
       list: [
         {
           img: require("../assets/images/home.png"),
@@ -54,19 +54,15 @@ export default {
   },
   methods: {
     add (str) {
-      if(!this.user_id){
+      if(!localStorage.getItem('listWss')){
+        // alert('没有')
         this.$router.push({path:'/login'});
-
-
-
-        
         return;
       }else{
+        // alert('有')
         this.fontname = str
-        // this.turnPage('/login');
         this.$router.push(this.fontname);
       }
-      
     },
   },
   mounted () {

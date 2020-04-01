@@ -14,10 +14,17 @@
             <div v-for="(item,key) of listMenu" :key='item.id'>
               <p>{{item.name}}</p>
               <ul>
-                <li v-for='(v,i) of item.child' :key='v.id' class='lwq-fenrong'>{{v.name}}</li>
+                <li v-for='(v,i) of item.child' :key='v.id' class='lwq-fenrong' >
+                  <span 
+                  :class="attr_val_id['attr'+key] == v.id ? 'active':''" 
+                  @click="selectId(v.id,'attr'+key)"
+                  >{{v.name}}</span>
+                </li>
               </ul>
             </div>
           </div>
+          <van-button type="default" @click="quxiao('kinds')">重置</van-button>
+          <van-button type="default" class='lwq-btn-que' @click="queren('kinds')">确认</van-button>
         </van-dropdown-item>
         <van-dropdown-item title="排序" :options="option2" >
         </van-dropdown-item>
@@ -82,9 +89,7 @@ export default {
     FooterTabbar
   },
   methods: {
-    
     getScroll(event,name){
-     
       let scrollBottom =
           event.target.scrollHeight -
           event.target.scrollTop -
@@ -121,6 +126,23 @@ export default {
         //   this.finished = true;
         // }
     },
+    queren(name){
+      alert(1111)
+      this.$refs[name].toggle();
+      this.$api.courseBasis.courseBasis(this.page).then((res)=>{
+          console.log(res);
+          this.list=res.data.data.list;
+        })
+    },
+    quxiao(){
+      this.$refs([name]).toggle();
+    },
+    selectId(id, attr) {                        //分类选项
+            // this.str()
+            console.log(this.str);
+            this.attr_val_id=id
+            // this.search(this.fron)
+        },
   },
   mounted() {
     this.add();
@@ -169,4 +191,12 @@ header{
     }
   }
 }
+.lwq-btn-que{
+  background: darkorange;
+}
+ span .active{
+            color:red;
+            // #ebeefe
+            background: #ebeefe;
+        }
 </style>

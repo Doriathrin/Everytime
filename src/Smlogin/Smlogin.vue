@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="smlogin">
     <van-form @submit="onSubmit">
       <van-field
         v-model="username"
@@ -16,16 +16,14 @@
         placeholder="请输入密码"
         :rules="[{ cipher, message: '请输入正确密码' }]"
       />
-      <!-- <van-field
-        v-model="verification"
-        name="verification"
-        label="验证码"
-        placeholder="验证码"
-        :rules="[{ required: true, message: '请填写验证码' }]"
-      /> -->
-      <router-link tag="p" to="/Smlogin">
-         注册
-      </router-link>
+      <van-field
+        v-model="password"
+        type="password"
+        name="cipher"
+        label="确认密码"
+        placeholder="请再次输入密码"
+        :rules="[{ cipher, message: '请输入正确密码' }]"
+      />
       <div style="margin: 16px;">
         <van-button round block type="info" native-type="submit">
           提交
@@ -37,10 +35,9 @@
 
 <script>
 export default {
-  name: 'Login',
+  name: 'Smlogin',
   data() { 
     return {
-      list:[],
       username: '',
       password: '',
       verification:'',
@@ -50,14 +47,7 @@ export default {
   },
   methods: {
     onSubmit(values) {
-      // 本地存储数据 模拟的
-      var add=JSON.parse(localStorage.getItem('listWss'))||[]
-      var obj={
-        username:this.username,password:this.password
-      }
-      add.unshift(obj);
-      localStorage.setItem('listWss',JSON.stringify(obj));
-      this.$router.push({path:'/'})
+      console.log(value);
     },
   },
   mounted() {
@@ -67,8 +57,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.van-button--info{
- background: red;
- border:none;
-}
+
 </style>

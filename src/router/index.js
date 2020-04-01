@@ -75,6 +75,14 @@ const routes = [
       title: '登录页'
     }
   },
+  {
+    path: '/smlogin',
+    name: 'Smlogin',
+    component: () => import('@/Smlogin/Smlogin'),
+    meta: {
+      title: '登录注册页'
+    }
+  },
   // {
   //   path: '/about',
   //   name: 'About',
