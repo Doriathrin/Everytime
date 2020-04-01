@@ -56,6 +56,10 @@ export default {
     add (str) {
       if(!this.user_id){
         this.$router.push({path:'/login'});
+
+
+
+        
         return;
       }else{
         this.fontname = str
