@@ -2,30 +2,6 @@
   <div class="footerTabbar">
     <footer>
       <ul>
-        <!-- <router-link tag="li"
-                     to="/">
-          <img src="../assets/images/home.png"
-               alt="">
-          <a href="#">首页</a>
-        </router-link>
-        <router-link tag="li"
-                     to="/course">
-          <img src="../assets/images/course.png"
-               alt="">
-          <a href="#">课程</a>
-        </router-link>
-        <router-link tag="li"
-                     to="/records">
-          <img src="../assets/images/study.png"
-               alt="">
-          <a href="#">约课记录</a>
-        </router-link>
-        <router-link tag="li"
-                     to="/persona">
-          <img src="../assets/images/user.png"
-               alt="">
-          <a href="#">个人</a>
-        </router-link> -->
         <li v-for='(item,key) in list' :key='key' @click="add(item.name)">
           <p><img :src="fontname==item.name?item.img_hover:item.img" alt=""></p>
           {{item.title}}
@@ -41,6 +17,7 @@ export default {
   data () {
     return {
       fontname:"/",
+      user_id:'111111111',
       list: [
         {
           img: require("../assets/images/home.png"),
@@ -77,9 +54,16 @@ export default {
   },
   methods: {
     add (str) {
-      this.fontname = str
-      this.$router.push(this.fontname)
-    }
+      if(!this.user_id){
+        this.$router.push({path:'/login'});
+        return;
+      }else{
+        this.fontname = str
+        // this.turnPage('/login');
+        this.$router.push(this.fontname);
+      }
+      
+    },
   },
   mounted () {
 

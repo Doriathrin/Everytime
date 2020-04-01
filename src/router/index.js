@@ -67,6 +67,14 @@ const routes = [
       title:'课程详情'
     }
   },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/login/Login'),
+    meta: {
+      title: '登录页'
+    }
+  },
   // {
   //   path: '/about',
   //   name: 'About',
