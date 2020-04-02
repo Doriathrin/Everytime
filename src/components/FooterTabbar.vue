@@ -57,6 +57,8 @@ export default {
       if(!localStorage.getItem('listWss')){
         // alert('没有')
         this.$router.push({path:'/login'});
+
+        
         return;
       }else{
         // alert('有')

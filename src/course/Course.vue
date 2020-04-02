@@ -11,10 +11,11 @@
       <van-dropdown-menu>
         <van-dropdown-item title="分类" ref="kinds">
           <div class='lwq-fenlei'>
-            <div v-for="(item,key) of listMenu" :key='item.id'>
+            <div v-for="(item,key) in listMenu" :key='item.id' class='lwq-hezi'>
               <p>{{item.name}}</p>
               <ul>
-                <li v-for='(v,i) of item.child' :key='v.id' class='lwq-fenrong' >
+                <li v-for='v in item.child' :key='v.id' class='lwq-fenrong' >
+                  
                   <span 
                   :class="attr_val_id['attr'+key] == v.id ? 'active':''" 
                   @click="selectId(v.id,'attr'+key)"
@@ -23,8 +24,8 @@
               </ul>
             </div>
           </div>
-          <van-button type="default" @click="quxiao('kinds')">重置</van-button>
-          <van-button type="default" class='lwq-btn-que' @click="queren('kinds')">确认</van-button>
+          <van-button @click="quxiao('kinds')">重置</van-button>
+          <van-button  class='lwq-btn-que' @click="queren('kinds')">确认</van-button>
         </van-dropdown-item>
         <van-dropdown-item title="排序" :options="option2" >
         </van-dropdown-item>
@@ -39,7 +40,7 @@
         finished-text="没有更多了"
         @load="onLoad($event)"
       >
-        <van-cell v-for="item in list" :key="item" :title="item.title" >
+        <van-cell v-for="(item,key) in list" :key='key' :title='item.title'> 
           <img :src="item.teachers_list[0].teacher_avatar" alt="">
           {{item.teachers_list[0].teacher_name}}
           <p>共{{item.browse_base}}课时</p>
@@ -61,9 +62,17 @@ export default {
       listMenu:[],
       loading: false,
       finished: false,
-      page:1,
+      form:{
+        page:1,
+        attr_val_id:0,
+        limit:10,
+        course_type:0,
+        classify_id:0,
+        order_by:0,
+        is_vip:0
+      },
       str:1,
-      attr_val_id:0,
+      attr_val_id:{},
       value2: 'a',
       option2: [
         { text: '综合排序', value: 'a' },
@@ -89,18 +98,18 @@ export default {
     FooterTabbar
   },
   methods: {
-    getScroll(event,name){
+    getScroll(event,form){
       let scrollBottom =
           event.target.scrollHeight -
           event.target.scrollTop -
           event.target.clientHeight;
           console.log(event.target.clientHeight);
         if(this.str==1&&scrollBottom<5){
-          this.page+=1;
+          this.form.page+=1;
           this.onLoad();
-          this.push()
         }else if(this.str==2&&scrollBottom<5){
-          
+          this.form.page+=1;
+          this.queren();
         }
     },
     add(){
@@ -113,23 +122,26 @@ export default {
     onLoad() {
       // 异步更新数据
       // setTimeout 仅做示例，真实场景中一般为 ajax 请求
-        this.$api.courseBasis.courseBasis(this.page).then((res)=>{
-          console.log(res);
-          this.list=res.data.data.list;
+      var str=[]
+        this.$api.courseBasis.courseBasis(this.form).then((res)=>{
+          // console.log(res);
+          // this.list=res.data.data.list;
+          str=res.data.data.list;
+          this.list=this.list.concat(str);
         })
-        
         // // 加载状态结束
-        // this.loading = false;
+        this.loading = false;
 
-        // // 数据全部加载完成
-        // if (this.list.length >= 40) {
-        //   this.finished = true;
-        // }
+        // 数据全部加载完成
+        if (this.list.length >= 0) {
+          this.finished = true;
+        }
     },
     queren(name){
-      alert(1111)
+      // alert(1111)
       this.$refs[name].toggle();
-      this.$api.courseBasis.courseBasis(this.page).then((res)=>{
+      console.log(name);
+      this.$api.courseBasis.courseBasis(this.form).then((res)=>{
           console.log(res);
           this.list=res.data.data.list;
         })
@@ -138,10 +150,12 @@ export default {
       this.$refs([name]).toggle();
     },
     selectId(id, attr) {                        //分类选项
-            // this.str()
+            this.str;
             console.log(this.str);
-            this.attr_val_id=id
-            // this.search(this.fron)
+            this.form.attr_val_id=id
+            // this.search(this.form)
+            this.$set(this.attr_val_id, attr, id);
+            this.form;
         },
   },
   mounted() {
@@ -172,31 +186,40 @@ header{
     height:50px;
   }
 }
-.lwq-fenlei>div{
-  p{
-    width:70px;
-    height:30px;
-    background: red;
-    font-size:15px;
-    border-radius: 3px;
-    line-height: 30px;
-    text-align: center;
-  }
-  .lwq-fenrong{
+.lwq-fenlei{
+  .lwq-hezi{
+    width:100%;
+    height:150px;
     ul{
-      
-      li{
-        display: flex;
-      }
+      flex-wrap: wrap;
+    }
+    p{
+      width:70px;
+      height:30px;
+      // background: red;
+      font-size:15px;
+      border-radius: 3px;
+      line-height: 30px;
+      text-align: center;
+    }
+    .lwq-fenrong{
+      width:100px;
+      height:30px;
+      font-size:15px;
+      line-height: 30px;
+      text-align: center;
+      background: whitesmoke;
+      border-radius: 5px;
+      margin-top: 10px;
     }
   }
+  
 }
 .lwq-btn-que{
   background: darkorange;
 }
- span .active{
-            color:red;
-            // #ebeefe
-            background: #ebeefe;
-        }
+.active{
+    color:red;
+    background: #ebeefe;
+  }
 </style>

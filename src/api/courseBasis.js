@@ -7,7 +7,7 @@ const courseBasis = {
   // },
   // get提交    
   courseBasis(obj) {
-    return axios.get(`${base.courseBasis}/app/courseBasis?page=${obj}`);
+    return axios.get(`${base.courseBasis}/app/courseBasis?page=${obj.page}&limit=${obj.limit}&course_type=${obj.course_type}&classify_id=${obj.classify_id}&order_by=${obj.order_by}&is_vip=${obj.is_vip}`);
   }
   // 其他接口…………
 }

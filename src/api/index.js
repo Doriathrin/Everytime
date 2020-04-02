@@ -12,12 +12,15 @@ import course from '@/api/courseClassify'
 import courseBasis from '@/api/courseBasis'
 // 课程详情
 import courseInfo from '@/api/courseInfo'
+// 预约
+import otoCourse from '@/api/otoCourse'
 // 导出接口
 export default {
   article,
   banner,
   course,
   courseBasis,
-  courseInfo
+  courseInfo,
+  otoCourse
   // ……
 }

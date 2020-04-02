@@ -83,6 +83,14 @@ const routes = [
       title: '登录注册页'
     }
   },
+  {
+    path: '/counseling',
+    name: 'Counseling',
+    component: () => import('@/counseling/Counseling'),
+    meta: {
+      title: '一对一辅导'
+    }
+  },
   // {
   //   path: '/about',
   //   name: 'About',
