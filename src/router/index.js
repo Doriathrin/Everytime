@@ -91,6 +91,14 @@ const routes = [
       title: '一对一辅导'
     }
   },
+  {
+    path: '/password',
+    name: 'Password',
+    component: () => import('@/password/Password'),
+    meta: {
+      title: '设置密码'
+    }
+  },
   // {
   //   path: '/about',
   //   name: 'About',

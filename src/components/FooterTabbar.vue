@@ -12,12 +12,11 @@
 </template>
 
 <script>
+import {mapState,mapMutations} from 'vuex'
 export default {
   name: 'FooterTabbar',
   data () {
     return {
-      fontname:"/",
-      user_id:'',
       list: [
         {
           img: require("../assets/images/home.png"),
@@ -47,25 +46,22 @@ export default {
           img: require("../assets/images/user.png"),
           img_hover: require("../assets/images/user-active.png"),
           title: "我的",
-          name: "/persona",
+          name: "/login",
         }
       ]
     }
   },
+  
   methods: {
+    ...mapMutations(['tiao']),
     add (str) {
-      if(!localStorage.getItem('listWss')){
-        // alert('没有')
-        this.$router.push({path:'/login'});
-
-        
-        return;
-      }else{
-        // alert('有')
-        this.fontname = str
-        this.$router.push(this.fontname);
-      }
+        this.tiao(str);
+        this.$router.push(str);
+        console.log(str);
     },
+  },
+  computed: {
+    ...mapState(['fontname'])
   },
   mounted () {
 

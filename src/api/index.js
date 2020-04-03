@@ -14,6 +14,12 @@ import courseBasis from '@/api/courseBasis'
 import courseInfo from '@/api/courseInfo'
 // 预约
 import otoCourse from '@/api/otoCourse'
+// 登录接口
+import login from '@/api/login'
+// 短信接口
+import VerificationLogin from '@/api/VerificationLogin'
+// 进行验证
+import verify from '@/api/verify'
 // 导出接口
 export default {
   article,
@@ -21,6 +27,9 @@ export default {
   course,
   courseBasis,
   courseInfo,
-  otoCourse
+  otoCourse,
+  login,
+  VerificationLogin,
+  verify
   // ……
 }
