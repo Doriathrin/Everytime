@@ -20,6 +20,8 @@ import login from '@/api/login'
 import VerificationLogin from '@/api/VerificationLogin'
 // 进行验证
 import verify from '@/api/verify'
+// 设置密码
+import password from '@/api/password'
 // 导出接口
 export default {
   article,
@@ -30,6 +32,7 @@ export default {
   otoCourse,
   login,
   VerificationLogin,
-  verify
+  verify,
+  password
   // ……
 }

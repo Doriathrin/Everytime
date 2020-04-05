@@ -99,6 +99,14 @@ const routes = [
       title: '设置密码'
     }
   },
+  {
+    path: '/information',
+    name: 'inforMation',
+    component: () => import('@/information/inforMation'),
+    meta: {
+      title: '信息填写'
+    }
+  },
   // {
   //   path: '/about',
   //   name: 'About',

@@ -10,6 +10,7 @@ const base = {
   otoCourse: 'https://test.365msmk.com/api',
   login: 'https://test.365msmk.com/api',
   VerificationLogin: 'https://test.365msmk.com/api',
-  verify: 'https://test.365msmk.com/api'
+  verify: 'https://test.365msmk.com/api',
+  password: 'https://test.365msmk.com/api'
 }
 export default base;
