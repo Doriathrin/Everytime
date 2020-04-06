@@ -6,6 +6,7 @@
     <div class='lwq-nav'>
       <van-tabs v-model="active">
         <van-tab title="待上课">
+          {{this.id}}
           <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
              <button @click="yue">立即预约</button>
           </van-pull-refresh>
@@ -36,8 +37,11 @@ export default {
     return {
       active: 0,
       count: 0,
-      isLoading: false
+      isLoading: false,
     }
+  },
+  created () {
+    this.id=this.$route.query.id
   },
   methods: {
     onRefresh() {
@@ -49,10 +53,10 @@ export default {
     },
     yue(){
       this.$router.push({path:'/counseling'})
-    }
+    },
   },
   mounted() {
-
+    
   },
  }
 </script>

@@ -26,8 +26,10 @@
               <div>
                 {{item.teach_age}}年教龄
               </div>
+              <p v-if='item.sex=="0"'>男</p>
+              <p v-if='item.sex=="1"'>女</p>
               <div>
-                <button>立即预约</button>
+                <button @click="yuyue(item.teacher_id)">立即预约</button>
               </div>
             </dd>
           </dl>
@@ -48,32 +50,36 @@ export default {
     }
   },
   methods: {
-    arr(){
-      this.$api.otoCourse.otoCourse().then((res)=>{
-        console.log(res);
-        this.list=res.data.data;
-      })
-    },
+    // arr(){
+    //   this.$api.otoCourse.otoCourse().then((res)=>{
+    //     console.log(res);
+    //     this.list=res.data.data;
+    //   })
+    // },
     onLoad() {
       // 异步更新数据
       // setTimeout 仅做示例，真实场景中一般为 ajax 请求
       setTimeout(() => {
-        for (let i = 0; i < 10; i++) {
-          this.list.push(this.list.length + 1);
-        }
+        this.$api.otoCourse.otoCourse().then((res)=>{
+        console.log(res);
+        this.list=res.data.data;
+      })
 
         // 加载状态结束
         this.loading = false;
 
         // 数据全部加载完成
-        if (this.list.length >= 40) {
+        if (this.list.length >= 0) {
           this.finished = true;
         }
       }, 1000);
+    },
+    yuyue(id){
+      this.$router.push({path:'/reservation',query:{'id':id}})
     }
   },
   mounted() {
-    this.arr();
+    // this.arr();
   },
  }
 </script>

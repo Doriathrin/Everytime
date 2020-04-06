@@ -22,6 +22,10 @@ import VerificationLogin from '@/api/VerificationLogin'
 import verify from '@/api/verify'
 // 设置密码
 import password from '@/api/password'
+// 预约课程详情
+import reservation from '@/api/reservation'
+// 时间
+import invite from '@/api/invite'
 // 导出接口
 export default {
   article,
@@ -33,6 +37,8 @@ export default {
   login,
   VerificationLogin,
   verify,
-  password
+  password,
+  reservation,
+  invite
   // ……
 }

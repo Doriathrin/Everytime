@@ -107,6 +107,14 @@ const routes = [
       title: '信息填写'
     }
   },
+  {
+    path: '/reservation',
+    name: 'Reservation',
+    component: () => import('@/reservation/reservation'),
+    meta: {
+      title: '预约课程'
+    }
+  },
   // {
   //   path: '/about',
   //   name: 'About',
