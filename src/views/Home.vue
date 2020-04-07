@@ -38,5 +38,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.Home{
+  background: #f0f2f5;
+}
 </style>

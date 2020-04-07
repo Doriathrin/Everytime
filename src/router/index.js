@@ -115,6 +115,14 @@ const routes = [
       title: '预约课程'
     }
   },
+  {
+    path: '/search',
+    name: 'Search',
+    component: () => import('@/Search/Search'),
+    meta: {
+      title: '历史搜索'
+    }
+  },
   // {
   //   path: '/about',
   //   name: 'About',

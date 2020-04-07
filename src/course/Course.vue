@@ -6,7 +6,7 @@
           <i class='iconfont'>&#xe63c;</i>
         </router-link>
         <li>特色课</li>
-        <li><i class="iconfont">&#xe637;</i></li>
+        <li @click="Search"><i class="iconfont">&#xe637;</i></li>
       </ul>
       <van-dropdown-menu>
         <van-dropdown-item title="分类" ref="kinds">
@@ -27,9 +27,25 @@
           <van-button @click="quxiao('kinds')">重置</van-button>
           <van-button  class='lwq-btn-que' @click="queren('kinds')">确认</van-button>
         </van-dropdown-item>
-        <van-dropdown-item title="排序" :options="option2" >
+        <van-dropdown-item title="排序" ref='sort' >
+          <ul >
+            <li v-for="(item,key) of option2" 
+            @click="pai('sort',item.value)"
+            :key='item.value'
+            >
+              {{item.text}}
+            </li>
+          </ul>
         </van-dropdown-item>
-        <van-dropdown-item title="筛选" :options="option3" >
+        <van-dropdown-item title="筛选" ref='filter' >
+          <ul >
+            <li v-for="(item,key) of option3" 
+            :key='item.type'
+            @click="pai('filter',item.type)"
+            >
+              {{item.text}}
+            </li>
+          </ul>
         </van-dropdown-item>
       </van-dropdown-menu>
     </header> 
@@ -75,22 +91,22 @@ export default {
       attr_val_id:{},
       value2: 'a',
       option2: [
-        { text: '综合排序', value: 'a' },
-        { text: '最新', value: 'b' },
-        { text: '最热', value: 'c' },
-        { text: '价格从低到高', value: 'd' },
-        { text: '价格从高到低', value: 'e' },
+        { text: '综合排序', value: 0 },
+        { text: '最新', value: 1 },
+        { text: '最热', value: 2 },
+        { text: '价格从低到高', value: 3 },
+        { text: '价格从高到低', value: 4 },
       ],
       option3: [
-        { text: '全部', value: 'a' },
-        { text: '大班课', value: 'b' },
-        { text: '公开课', value: 'c' },
-        { text: '点播课', value: 'd' },
-        { text: '面授课', value: 'e' },
-        { text: '音频课', value: 'f' },
-        { text: '系统课', value: 'g' },
-        { text: '图文课', value: 'h' },
-        { text: '会员课', value: 'i' },
+        { text: '全部', type: 0 },
+        { text: '大班课', type: 1 },
+        { text: '公开课', type: 2 },
+        { text: '点播课', type: 3 },
+        { text: '面授课', type: 4 },
+        { text: '音频课', type: 5 },
+        { text: '系统课', type: 6 },
+        { text: '图文课', type: 7 },
+        { text: '会员课', type: 8 },
       ]
     }
   },
@@ -137,8 +153,13 @@ export default {
           this.finished = true;
         }
     },
+    onLoad2(){
+      this.$api.courseBasis.courseBasis(this.form).then((res)=>{
+          console.log(res);
+          this.list=res.data.data.list;
+        })
+    },
     queren(name){
-      // alert(1111)
       this.$refs[name].toggle();
       console.log(name);
       this.$api.courseBasis.courseBasis(this.form).then((res)=>{
@@ -146,17 +167,32 @@ export default {
           this.list=res.data.data.list;
         })
     },
-    quxiao(){
-      this.$refs([name]).toggle();
+    quxiao(name){
+      this.$refs[name].toggle();
     },
     selectId(id, attr) {                        //分类选项
-            this.str;
-            console.log(this.str);
+            // this.str;
+            // console.log(this.str);
             this.form.attr_val_id=id
             // this.search(this.form)
             this.$set(this.attr_val_id, attr, id);
-            this.form;
+            // this.form;
         },
+    Search(){
+      this.$router.push({path:'/Search'})
+    },
+    pai(name,val){
+      this.$refs[name].toggle();
+      console.log(name);
+      if(name=='sort'){
+        this.form.order_by=val;
+        this.form.limit=100;
+        this.onLoad2();
+      }else{
+        this.form.course_type=val;
+        this.onLoad2();
+      }
+    }
   },
   mounted() {
     this.add();

@@ -39,7 +39,7 @@ export default {
         {
           img: require("../assets/images/question.png"),
           img_hover: require("../assets/images/user-active.png"),
-          title: "联习",
+          title: "练习",
           name: "/practise",
         },
         {

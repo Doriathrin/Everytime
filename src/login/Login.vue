@@ -39,6 +39,19 @@
           提交
         </van-button>
       </div>
+      <div class='lwq-disan'>
+        <p>第三方登录</p>
+        <ul>
+          <li @click="qqLogin(1)">
+            <img src="../assets/images/pay-wx.png" alt="微信登录" class='lwq-wx'>
+            <span>微信登录</span>
+          </li>
+          <li @click="qqLogin(2)">
+            <img src="../assets/images/QQ.png" alt="QQ登录" class='lwq-qq'>
+            <span>QQ登录</span>
+          </li>
+        </ul>
+      </div>
     </van-form>
   </div>
 </template>
@@ -61,6 +74,18 @@ export default {
       // 本地存储数据 模拟的
       
     },
+    qqLogin(type){
+      if(type==1){
+        // this.$pub.thirdpartLogin('wx');
+        // alert('微信')
+        const url=location.protocol+'//'+location.host;
+
+        console.log(url);
+      }else{
+        // alert('QQ')
+        // this.$pub.thirdpartLogin('qq');
+      }
+    }
   },
   mounted() {
     
@@ -99,5 +124,32 @@ ul{
 }
 .van-cell:hover{
   border-bottom: 1px solid red;
+}
+.lwq-disan{
+  width:100%;
+  height:100px;
+  // background: red;
+  font-size: 15px;
+  p{
+    text-align: center;
+  }
+  ul{
+    display: flex;
+    li{
+      color: #000000;
+      display: flex;
+      span{
+        margin-left: 5px;
+      }
+      .lwq-wx{
+        width:22px;
+        height:18px;
+      }
+      .lwq-qq{
+        width:20px;
+        height: 20px;
+      }
+    }
+  }
 }
 </style>
