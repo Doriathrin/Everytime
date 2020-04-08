@@ -5,13 +5,13 @@
     </div>
     <van-form @submit="onSubmit">
       <van-field
-        v-model="username"
+        v-model="mobile"
         name="pattern"
         placeholder="请输入手机号"
         :rules="[{ pattern, message: '请输入正确内容' }]"
       />
       <van-field
-        v-model="password"
+        v-model="user_pass"
         type="password"
         name="cipher"
         
@@ -35,7 +35,7 @@
         </router-link>
       </ul>
       <div style="margin: 16px;">
-        <van-button round block type="info" native-type="submit">
+        <van-button round block type="info" @click="goLogin">
           提交
         </van-button>
       </div>
@@ -62,8 +62,8 @@ export default {
   data() { 
     return {
       list:[],
-      username: '',
-      password: '',
+      mobile: "",
+      user_pass: '',
       verification:'',
       pattern: /^[1]([3-9])[0-9]{9}$/,
       cipher: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
@@ -85,7 +85,25 @@ export default {
         // alert('QQ')
         // this.$pub.thirdpartLogin('qq');
       }
-    }
+    },
+    goLogin() {
+      this.$api.login.login({
+        mobile: this.mobile,
+        password: this.user_pass,
+        type: 1})
+        .then(res => {
+          console.log(res);
+          localStorage.setItem("adminToken", res.remember_token);
+          localStorage.setItem("user_id", res.id);
+            // if(this.$pub.isWeiXin()){
+            //   window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4b809012f597f205&redirect_uri=https://wap.365msmk.com/person&response_type=code&scope=snsapi_userinfo&state=1&connect_redirect=1#wechat_redirect"
+            //   return false;
+            // }
+            this.$router.push({
+              name: "Persona"
+            });
+        });
+    },
   },
   mounted() {
     

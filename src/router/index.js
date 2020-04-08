@@ -35,6 +35,7 @@ const routes = [
     // 在路由内
     component: () => import('@/course/Course'),
     meta: {
+      footer: true,
       title:'特色课'
     }
   },
@@ -64,6 +65,7 @@ const routes = [
     name: 'Details',
     component: () => import('@/details/Details'),
     meta: { 
+      footer: true,
       title:'课程详情'
     }
   },

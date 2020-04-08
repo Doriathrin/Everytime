@@ -13,6 +13,7 @@ const base = {
   verify: 'https://test.365msmk.com/api',
   password: 'https://test.365msmk.com/api',
   reservation: 'https://test.365msmk.com/api',
-  invite: 'https://test.365msmk.com/api'
+  invite: 'https://test.365msmk.com/api',
+  userInfo: 'https://test.365msmk.com/api'
 }
 export default base;
