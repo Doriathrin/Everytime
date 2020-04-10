@@ -61,7 +61,20 @@ export default {
     },
   },
   computed: {
-    ...mapState(['fontname'])
+    ...mapState(['fontname', "config"])
+  },
+  watch: {
+    config(val) {
+      if (val.switch_question_module == 1) {
+        console.log(val);
+        this.list.splice(3, 0,{
+          img: require("../assets/images/question.png"),
+          img_hover: require("../assets/images/user-active.png"),
+          title: "练习",
+          name: "/practise",
+        },);
+      }
+    }
   },
   mounted () {
 

@@ -9,6 +9,12 @@ const userInfo = {
   sonArea(obj, params) {
     return axios.get(`${base.userInfo}/app/sonArea/0`);
   },
+  sonAreaID(obj, params) {
+    return axios.get(`${base.userInfo}/app/sonArea/${obj.provinceID}`);
+  },
+  sonAreaSID(obj, params) {
+    return axios.get(`${base.userInfo}/app/sonArea/${obj.cityID}`);
+  },
   // 年级选择
   attribute(obj, params) {
     return axios.get(`${base.userInfo}/app/module/attribute/${obj}`);

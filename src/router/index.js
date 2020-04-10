@@ -125,6 +125,14 @@ const routes = [
       title: '历史搜索'
     }
   },
+  {
+    path: '/subject',
+    name: 'Subject',
+    component: () => import('@/information/Subject/Subject'),
+    meta: {
+      title: '学科'
+    }
+  },
   // {
   //   path: '/about',
   //   name: 'About',

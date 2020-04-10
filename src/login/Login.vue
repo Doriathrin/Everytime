@@ -93,8 +93,8 @@ export default {
         type: 1})
         .then(res => {
           console.log(res);
-          localStorage.setItem("adminToken", res.remember_token);
-          localStorage.setItem("user_id", res.id);
+          localStorage.setItem("adminToken", res.data.data.remember_token);
+          localStorage.setItem("user_id", res.data.data.id);
             // if(this.$pub.isWeiXin()){
             //   window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4b809012f597f205&redirect_uri=https://wap.365msmk.com/person&response_type=code&scope=snsapi_userinfo&state=1&connect_redirect=1#wechat_redirect"
             //   return false;
@@ -106,7 +106,8 @@ export default {
     },
   },
   mounted() {
-    
+    localStorage.removeItem("adminToken");
+    localStorage.removeItem("user_id");
   },
  }
 </script>

@@ -1,21 +1,16 @@
 <template>
-  <div class="persona">
-    个人
-    <Footer></Footer>
+  <div class="subject">
+
   </div>
 </template>
 
 <script>
-import Footer from '@/components/FooterTabbar'
 export default {
-  name: 'Persona',
+  name: 'Subject',
   data() { 
     return {
 
     }
-  },
-  components:{
-    Footer
   },
   methods: {
 

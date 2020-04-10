@@ -30,8 +30,8 @@
         <van-dropdown-item title="排序" ref='sort' >
           <ul >
             <li v-for="(item,key) of option2" 
-            @click="pai('sort',item.value)"
             :key='item.value'
+            @click="pai('sort',item.value)"
             >
               {{item.text}}
             </li>
@@ -140,7 +140,7 @@ export default {
       // setTimeout 仅做示例，真实场景中一般为 ajax 请求
       var str=[]
         this.$api.courseBasis.courseBasis(this.form).then((res)=>{
-          // console.log(res);
+          console.log(res);
           // this.list=res.data.data.list;
           str=res.data.data.list;
           this.list=this.list.concat(str);

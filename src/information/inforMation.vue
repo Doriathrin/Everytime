@@ -44,14 +44,6 @@
       <dd>学科</dd>
       <dt><i class='iconfont'>&#xe600;</i></dt>
     </dl>
-    <van-action-sheet v-model="subject" @select="onSelect">
-        <van-picker
-          show-toolbar
-          :columns="listColumns"
-          @confirm="onConfirm"
-        />
-    </van-action-sheet>
-
     <dl @click="xueke">
       <dd>年级</dd>
       <dt><i class='iconfont'>&#xe600;</i></dt>
@@ -77,11 +69,11 @@ export default {
   name: 'inforMation',
   data() { 
     return {
+      userInfo:{},
       show: false,
       Change:false,
       City:false,
       portrait:false,
-      subject:false,
       id:1,
       minDate: new Date(1980, 0, 1),
       maxDate: new Date(2025, 10, 1),
@@ -93,7 +85,11 @@ export default {
       ],
       columns: ['全部', '高三', '高二', '高一', '初三','初二','初一'],
       listColumns:[],
-      areaList: []
+      areaList: {
+        province_list: {},
+        city_list: {},
+        county_list: {}
+      }
     }
   },
   methods: {
@@ -115,28 +111,71 @@ export default {
       this.portrait=true
     },
     Subject(){
-      this.subject=true
+      this.$router.push({path:'/subject'})
     },
     onConfirm(picker, value, index) {
       Toast(`当前值：${value}, 当前索引：${index}`);
     },
-    sonArea(){
-      this.$api.userInfo.sonArea().then((res)=>{
-        console.log(res);
-        this.areaList=res.data.data
-        console.log(this.areaList);
-      })
+    // sonArea(){
+    //   this.$api.userInfo.sonArea().then((res)=>{
+    //     console.log(res);
+    //     this.areaList=res.data.data
+    //     console.log(this.areaList);
+    //   })
+    // },
+    // attribute(){
+    //   this.$api.userInfo.attribute(this.id).then((res)=>{
+    //     console.log(res);
+    //     // this.columns=res.data.data
+    //   })
+    // },
+    onConfirmAddress(val) {
+      this.showPopup = false;
+      // this.requestUpdateUserInfo({
+      //   province_id: val[0].code,
+      //   city_id: val[1].code,
+      //   district_id: val[2].code
+      // });
+      this.userInfo.province_name = val[0].name;
+      this.userInfo.city_name = val[1].name;
+      this.userInfo.district_name = val[2].name;
+      this.userInfo.province_id = val[0].code;
+      this.userInfo.city_id = val[1].code;
+      this.userInfo.district_id = val[2].code
     },
-    attribute(){
-      this.$api.userInfo.attribute(this.id).then((res)=>{
-        console.log(res);
-        // this.columns=res.data.data
-      })
-    },
+    async requestArea() {
+      let obj = {};
+      const province = await this.$api.userInfo.sonArea();
+      console.log(province);
+      province.data.data.forEach(i => {
+        obj[i.id] = i.area_name;
+      });
+      this.areaList.province_list = obj;
+      const provinceID = province.data.data.id;
+      console.log(provinceID);
+      const city = await this.$api.userInfo.sonAreaID({provinceID});
+      console.log(city);
+      obj = {};
+      city.data.data.forEach(i => {
+        obj[i.id] = i.area_name;
+      });
+      this.areaList.city_list = obj;
+      const cityID = city.data.data.id;
+      const district = await this.$api.userInfo.sonAreaSID({cityID});
+      obj = {};
+      district.data.data.forEach(i => {
+        obj[i.id] = i.area_name;
+      });
+      this.areaList.county_list = obj;
+      if (!this.userInfo.district_id && district.length) {
+        this.userInfo.district_id = district.data.data.id;
+      }
+    }
   },
   mounted() {
-    this.sonArea();
-    this.attribute()
+    // this.sonArea();
+    // this.attribute()
+    this.requestArea()
   },
  }
 </script>

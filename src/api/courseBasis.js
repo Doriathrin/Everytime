@@ -8,6 +8,9 @@ const courseBasis = {
   // get提交    
   courseBasis(obj) {
     return axios.get(`${base.courseBasis}/app/courseBasis?page=${obj.page}&limit=${obj.limit}&course_type=${obj.course_type}&classify_id=${obj.classify_id}&order_by=${obj.order_by}&attr_val_id=${obj.attr_val_id}&is_vip=${obj.is_vip}`);
+  },
+  courseSosuo(obj) {
+    return axios.get(`${base.courseBasis}/app/courseBasis`);
   }
   // 其他接口…………
 }

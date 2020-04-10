@@ -62,7 +62,7 @@ export default {
       this.$api.verify.verify({mobile:this.message.mobile,smscode:this.message.smscode,type:2}).then((res)=>{
         console.log(res);
         res=res.data.data
-        this.user(res.id);
+        this.user(res.id)
         this.getsmscode(res.message);
         this.token(res.remember_token)
         this.$router.push({path:'/password'})

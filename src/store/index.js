@@ -1,15 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import http from '../api/index'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     fontname: '/',
     str: 1,
+    config:'',
     user_id: '',
     token: '',
-    smscodeData:''
+    smscodeData: '',
+    personInfo: {},
   },
   mutations: {
     tiao (state, str) {
@@ -24,9 +26,17 @@ export default new Vuex.Store({
     },
     getsmscode (state, str) {
       state.smscodeData=str
-    }
+    },
+    SET_USERINFO: (state, person) => {
+      state.personInfo = person
+    },
   },
   actions: {
+    async getPerson(content) {
+      const userInfo = await http.$api.userInfo.userInfo();
+      localStorage.user_id = userInfo.id
+      content.commit('SET_USERINFO', userInfo)
+    },
   },
   modules: {
   },
