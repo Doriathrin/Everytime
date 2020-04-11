@@ -5,6 +5,12 @@ const login = {
   login(obj, params) {
     return axios.post(`${base.login}/app/login?type=${obj.type}&mobile=${obj.mobile}&password=${obj.password}`);
   },
+  Mag(obj, params) {
+    return axios.post(`${base.login}/app/message/classifyMessage`);
+  },
+  Center(obj, params) {
+    return axios.post(`${base.login}/app/getUCenterInfo`);
+  },
   // 其他接口…………
 }
 export default login;

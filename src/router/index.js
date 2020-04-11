@@ -133,6 +133,14 @@ const routes = [
       title: '学科'
     }
   },
+  {
+    path: '/point',
+    name: 'Point',
+    component: () => import('@/practise/point/point'),
+    meta: {
+      title: '数学'
+    }
+  },
   // {
   //   path: '/about',
   //   name: 'About',

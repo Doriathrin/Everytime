@@ -6,7 +6,7 @@
     <section>
       <nav>
         <ul>
-          <li >
+          <li @click="shuxue">
             <div>
               <img src="../assets/images/exam-point.png" alt="">
             </div>
@@ -62,7 +62,9 @@ export default {
     Footer
   },
   methods: {
-
+    shuxue(){
+      this.$router.push({name:'Point'})
+    }
   },
   mounted() {
 

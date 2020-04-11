@@ -46,7 +46,7 @@ export default {
           img: require("../assets/images/user.png"),
           img_hover: require("../assets/images/user-active.png"),
           title: "我的",
-          name: "/login",
+          name: "/persona",
         }
       ]
     }
@@ -55,27 +55,32 @@ export default {
   methods: {
     ...mapMutations(['tiao']),
     add (str) {
+      if(this.$router.push({name:'persona'})||localStorage.user_id){
         this.tiao(str);
         this.$router.push(str);
         console.log(str);
+      }else{
+        this.$router.push({name:'Login'})
+      }
+        
     },
   },
   computed: {
     ...mapState(['fontname', "config"])
   },
-  watch: {
-    config(val) {
-      if (val.switch_question_module == 1) {
-        console.log(val);
-        this.list.splice(3, 0,{
-          img: require("../assets/images/question.png"),
-          img_hover: require("../assets/images/user-active.png"),
-          title: "练习",
-          name: "/practise",
-        },);
-      }
-    }
-  },
+  // watch: {
+  //   config(val) {
+  //     if (val.switch_question_module == 1) {
+  //       console.log(val);
+  //       this.list.splice(3, 0,{
+  //         img: require("../assets/images/question.png"),
+  //         img_hover: require("../assets/images/user-active.png"),
+  //         title: "练习",
+  //         name: "/practise",
+  //       },);
+  //     }
+  //   }
+  // },
   mounted () {
 
   },

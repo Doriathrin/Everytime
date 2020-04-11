@@ -9,7 +9,7 @@ export default new Vuex.Store({
     str: 1,
     config:'',
     user_id: '',
-    token: '',
+    // token: '',
     smscodeData: '',
     personInfo: {},
   },
@@ -19,7 +19,7 @@ export default new Vuex.Store({
       console.log(str);
     },
     token (state, str) {
-      state.token=str
+      state.adminToken = str
     },
     user (state, str) {
       state.user_id=str

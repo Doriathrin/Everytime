@@ -10,10 +10,10 @@ const userInfo = {
     return axios.get(`${base.userInfo}/app/sonArea/0`);
   },
   sonAreaID(obj, params) {
-    return axios.get(`${base.userInfo}/app/sonArea/${obj.provinceID}`);
+    return axios.get(`${base.userInfo}/app/sonArea/${obj}`);
   },
   sonAreaSID(obj, params) {
-    return axios.get(`${base.userInfo}/app/sonArea/${obj.cityID}`);
+    return axios.get(`${base.userInfo}/app/sonArea/${obj}`);
   },
   // 年级选择
   attribute(obj, params) {

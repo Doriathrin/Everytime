@@ -28,6 +28,8 @@ import reservation from '@/api/reservation'
 import invite from '@/api/invite'
 // 个人信息
 import userInfo from '@/api/userInfo'
+// 题库选择
+import classify from '@/api/classify'
 // 导出接口
 export default {
   article,
@@ -42,6 +44,7 @@ export default {
   password,
   reservation,
   invite,
-  userInfo
+  userInfo,
+  classify
   // ……
 }

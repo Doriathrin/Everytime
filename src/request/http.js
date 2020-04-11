@@ -20,6 +20,10 @@ const tip = msg => {
     forbidClick: true
   });
 }
+// 个人信息 请求头加上token
+if (localStorage.adminToken) {
+  axios.defaults.headers.Authorization='Bearer'+localStorage.adminToken
+}
 
 /** 
  * 跳转登录页
@@ -27,7 +31,7 @@ const tip = msg => {
  */
 const toLogin = () => {
   router.replace({
-    path: '/login',
+    path: '/persona',
     query: {
       redirect: router.currentRoute.fullPath
     }
@@ -49,7 +53,8 @@ const errorHandle = (status, other) => {
       // 清除token并跳转登录页
     case 403:
       tip('登录过期，请重新登录');
-      localStorage.removeItem('token');
+      localStorage.removeItem('adminToken');
+      localStorage.removeItem("user_id");
       store.commit('loginSuccess', null);
       setTimeout(() => {
         toLogin();

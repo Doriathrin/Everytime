@@ -65,6 +65,7 @@ export default {
       mobile: "",
       user_pass: '',
       verification:'',
+      List:{},
       pattern: /^[1]([3-9])[0-9]{9}$/,
       cipher: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
     }
@@ -95,6 +96,7 @@ export default {
           console.log(res);
           localStorage.setItem("adminToken", res.data.data.remember_token);
           localStorage.setItem("user_id", res.data.data.id);
+          localStorage.setItem("listToken", JSON.stringify(res.data));
             // if(this.$pub.isWeiXin()){
             //   window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4b809012f597f205&redirect_uri=https://wap.365msmk.com/person&response_type=code&scope=snsapi_userinfo&state=1&connect_redirect=1#wechat_redirect"
             //   return false;

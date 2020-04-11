@@ -33,10 +33,14 @@
     <dl @click="ction">
       <dd>所在城市</dd>
       <dt><i class='iconfont'>&#xe600;</i></dt>
+      <span>{{userInfo.province_name}}{{userInfo.city_name?"，"+userInfo.city_name:''}}{{userInfo.district_name?"，"+userInfo.district_name:''}}</span>
     </dl>
     <van-action-sheet v-model="City" @select="onSelect">
       <van-area 
       :area-list="areaList" 
+      :columns-num="3" 
+      @change="onChangeAddress"
+      :value="userInfo.district_id + ''"
       />
     </van-action-sheet>
 
@@ -89,7 +93,8 @@ export default {
         province_list: {},
         city_list: {},
         county_list: {}
-      }
+      },
+      provinceID:'',
     }
   },
   methods: {
@@ -123,12 +128,12 @@ export default {
     //     console.log(this.areaList);
     //   })
     // },
-    // attribute(){
-    //   this.$api.userInfo.attribute(this.id).then((res)=>{
-    //     console.log(res);
-    //     // this.columns=res.data.data
-    //   })
-    // },
+    attribute(){
+      this.$api.userInfo.attribute(this.id).then((res)=>{
+        console.log(res);
+        // this.columns=res.data.data
+      })
+    },
     onConfirmAddress(val) {
       this.showPopup = false;
       // this.requestUpdateUserInfo({
@@ -151,16 +156,15 @@ export default {
         obj[i.id] = i.area_name;
       });
       this.areaList.province_list = obj;
-      const provinceID = province.data.data.id;
-      console.log(provinceID);
-      const city = await this.$api.userInfo.sonAreaID({provinceID});
+      const provinceID = this.userInfo.province_id || province.data.data.id;
+      const city = await this.$api.userInfo.sonAreaID({provinceID:this.provinceID});
       console.log(city);
       obj = {};
       city.data.data.forEach(i => {
         obj[i.id] = i.area_name;
       });
       this.areaList.city_list = obj;
-      const cityID = city.data.data.id;
+      const cityID =this.userInfo.city_id || city.data.data.id;
       const district = await this.$api.userInfo.sonAreaSID({cityID});
       obj = {};
       district.data.data.forEach(i => {
@@ -174,7 +178,7 @@ export default {
   },
   mounted() {
     // this.sonArea();
-    // this.attribute()
+    this.attribute()
     this.requestArea()
   },
  }
