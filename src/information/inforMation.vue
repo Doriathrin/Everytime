@@ -1,7 +1,12 @@
 <template>
   <div class="information">
     <header>
-      信息填写
+      <ul>
+        <router-link to="/persona" tag="li" class='iconfont'>
+          &#xe63c;
+        </router-link>
+        <li class='lwq-xinxi'>信息填写</li>
+      </ul>
     </header>
     <dl @click="headshot">
       <dd>头像</dd>
@@ -193,6 +198,16 @@ header{
   line-height: 50px;
   text-align: center;
   font-size: 20px;
+  ul{
+    display: flex;
+    align-items: center;
+    .iconfont{
+      margin-left: 20px;
+    }
+    .lwq-xinxi{
+      margin-left: 120px;
+    }
+  }
 }
 dl{
   width:100%;

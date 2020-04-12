@@ -3,7 +3,7 @@
     <header>
       <div class='lwq-to' >
         <div class='lwq-info'>
-          <section class='lwq-login'>
+          <section class='lwq-login' @click="geRen">
             <div class='lwq-avatar'>
               <img v-if='user_id' :src="userInfo.data.avatar || headerImg" alt="">
               <img class="hea" v-else src="~@/assets/images/avatar.png" />
@@ -18,10 +18,25 @@
                   src="~@/assets/images/皇冠-2 拷贝@2x.png"
                 />
             </div>
-            <div class='lwq-name'>
-              {{userInfo.data.nickname}}
+            <div class='lwq-extra'>
+              <p class='lwq-name'>
+                <span>{{userInfo.data.nickname}}</span>
+              </p>
+              <p class='iconfont edit'>&#xe603;</p>
             </div>
           </section>
+        </div>
+        <div class='lwq-mine'>
+           <ul>
+             <li v-for='(item,key) of mineList' :key='key' :class="item.style">
+               <p class='lwq-count'>{{item.count}}</p>
+               <p class='lwq-nameMing'>{{item.name}}</p>
+               <p class='lwq-note'>{{item.note}}</p>
+             </li>
+           </ul> 
+        </div>
+        <div class="to-set" @click="oto">
+          <span>去约课</span>
         </div>
       </div>
     </header>
@@ -39,6 +54,29 @@ export default {
       user_id: JSON.parse(localStorage.getItem("user_id")) || "",
       userInfo:{},
       headerImg: require("@/assets/images/user_Headportrait.png"),
+      mineList: [
+        {
+          count: 0,
+          name: "我的特色课",
+          note: "已购特色课程的学习",
+          style: "my-study",
+          url: "MyStudy"
+        },
+        {
+          count: 0,
+          name: "一对一辅导",
+          note: "我的一对一老师辅导",
+          style: "my-plan",
+          url: "yue"
+        },
+        {
+          count: 0,
+          name: "剩余学习币",
+          note: "查看剩余学习币",
+          style: "my-period",
+          url: "MyCurrency"
+        }
+      ],
     }
   },
   components:{
@@ -64,6 +102,12 @@ export default {
     },
     onLogin() {
       this.turnPage("Login");
+    },
+    geRen(){
+      this.$router.push({name:'inforMation'})
+    },
+    oto(){
+      this.$router.push({name:'Oto'})
     },
     login(){
       this.$api.userInfo.userInfo().then((res)=>{
@@ -148,11 +192,74 @@ header{
             height:20px;
           }
         }
-        .lwq-name{
+        .lwq-extra{
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
           font-size: 16px;
           margin-left: 10px;
+          .edit{
+            margin-left: 10px;
+            color: red;
+          }
         }
       }
+    }
+  }
+  .lwq-mine{
+    width:100%;
+    height:90px;
+    // background: red;
+    ul{
+      display: flex;
+      li{
+        width:150px;
+        height:70px;
+        // background: chartreuse;
+        text-align: center;
+        position: relative;
+        margin-top: 10px;
+        .lwq-count{
+          color:#eb6100;
+          font-size:25px;
+        }
+        .lwq-nameMing{
+          font-size:15px;
+        }
+        .lwq-note{
+          font-size: 12px;
+          color:#b7b7b7;
+        }
+        &::after{
+          content: "";
+          display: block;
+          width:1px;
+          height:70px;
+          background-color: #f5f5f5;
+          position: absolute;
+          top: 50%;
+          right: 0;
+          transform: translateY(-50%);
+        }
+      }
+    }
+  }
+  .to-set{
+    position: absolute;
+    top: 8.8vw;
+    right: 0;
+    width: 55px;
+    height: 26px;
+    line-height: 50%;
+    border-top-left-radius: 11px;
+    border-bottom-left-radius: 10px;
+    background-color: #eb6100;
+    text-align: center;
+    vertical-align: middle;
+    span{
+      font-size:12px;
+      color:white;
+      line-height: 24px;
     }
   }
 }

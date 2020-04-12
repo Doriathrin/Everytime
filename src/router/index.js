@@ -141,6 +141,14 @@ const routes = [
       title: '数学'
     }
   },
+  {
+    path: '/oto',
+    name: 'Oto',
+    component: () => import('@/persona/oto/Oto'),
+    meta: {
+      title: '一对一辅导'
+    }
+  },
   // {
   //   path: '/about',
   //   name: 'About',
