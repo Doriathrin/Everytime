@@ -149,6 +149,14 @@ const routes = [
       title: '一对一辅导'
     }
   },
+  {
+    path: '/myStudy',
+    name: 'MyStudy',
+    component: () => import('@/persona/myStudy/MyStudy'),
+    meta: {
+      title: '我的特色课'
+    }
+  },
   // {
   //   path: '/about',
   //   name: 'About',

@@ -30,6 +30,8 @@ import invite from '@/api/invite'
 import userInfo from '@/api/userInfo'
 // 题库选择
 import classify from '@/api/classify'
+// 我的学习
+import myStudy from '@/api/myStudy'
 // 导出接口
 export default {
   article,
@@ -45,6 +47,7 @@ export default {
   reservation,
   invite,
   userInfo,
-  classify
+  classify,
+  myStudy
   // ……
 }

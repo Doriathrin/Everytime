@@ -5,5 +5,8 @@ const classify = {
   classify(id, params) {
     return axios.get(`${base.userInfo}/app/wap/classify`);
   },
+  quesBank(obj, params) {
+    return axios.get(`${base.userInfo}/app/wap/quesBank/${obj}`);
+  },
 }
 export default classify;

@@ -59,6 +59,7 @@ export default {
   methods: {
     ...mapMutations(['token','user','getsmscode']),
     onSubmit(values) {
+      // 进行验证
       this.$api.verify.verify({mobile:this.message.mobile,smscode:this.message.smscode,type:2}).then((res)=>{
         console.log(res);
         res=res.data.data
@@ -70,6 +71,7 @@ export default {
     },
     Confirmation(){
       this.$api.VerificationLogin.VerificationLogin(this.message).then(res => {
+        //短信接口
                 console.log(res);
                 this.timebool = true;
                 this.time = 60;

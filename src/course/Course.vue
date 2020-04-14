@@ -56,7 +56,7 @@
         finished-text="没有更多了"
         @load="onLoad($event)"
       >
-        <van-cell v-for="(item,key) in list" :key='key' :title='item.title'> 
+        <van-cell v-for="(item,key) in list" :key='key' :title='item.title' @click="wode(item.id)"> 
           <img :src="item.teachers_list[0].teacher_avatar" alt="">
           {{item.teachers_list[0].teacher_name}}
           <p>共{{item.browse_base}}课时</p>
@@ -114,6 +114,9 @@ export default {
     FooterTabbar
   },
   methods: {
+    wode(id){
+      this.$router.push({name:'MyStudy',query:{'id':id}})
+    },
     getScroll(event,form){
       let scrollBottom =
           event.target.scrollHeight -

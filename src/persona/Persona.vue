@@ -19,7 +19,7 @@
                 />
             </div>
             <div class='lwq-extra'>
-              <p class='lwq-name'>
+              <p class='lwq-name' >
                 <span>{{userInfo.data.nickname}}</span>
               </p>
               <p class='iconfont edit'>&#xe603;</p>
@@ -28,14 +28,14 @@
         </div>
         <div class='lwq-mine'>
            <ul>
-             <li v-for='(item,key) of mineList' :key='key' :class="item.style">
+             <li v-for='(item,key) of mineList' :key='key' :class="item.style" @click="onMineItem(item)">
                <p class='lwq-count'>{{item.count}}</p>
                <p class='lwq-nameMing'>{{item.name}}</p>
                <p class='lwq-note'>{{item.note}}</p>
              </li>
            </ul> 
         </div>
-        <div class="to-set" @click="oto">
+        <div class="to-set" @click="yueke">
           <span>去约课</span>
         </div>
       </div>
@@ -86,7 +86,17 @@ export default {
     this.turnPage();
     this.requestMessage();
   },
+  yueke(){
+    this.$router.push({name:'Oto'})
+  },
   methods: {
+    onMineItem(item) {
+      if (!item.url) return;
+      this.turnPage(item.url);
+    },
+    yueke(){
+      this.$router.push({name:'Oto'})
+    },
      turnPage(name, query) {
       if (!this.user_id) {
         // 未登录 统一推到验证码登录页面

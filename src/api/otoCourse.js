@@ -6,7 +6,7 @@ const otoCourse = {
   //   return axios.get(`${base.otoCourse}/app/banner`);
   // },
   // post提交    
-  otoCourse(params) {
+  otoCourse(obj,params) {
     return axios.get(`${base.otoCourse}/app/otoCourse`, qs.stringify(params));
   }
   // 其他接口…………

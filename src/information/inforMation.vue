@@ -37,14 +37,13 @@
     
     <dl @click="ction">
       <dd>所在城市</dd>
-      <dt><i class='iconfont'>&#xe600;</i></dt>
       <span>{{userInfo.province_name}}{{userInfo.city_name?"，"+userInfo.city_name:''}}{{userInfo.district_name?"，"+userInfo.district_name:''}}</span>
+      <dt><i class='iconfont'>&#xe600;</i></dt>
     </dl>
     <van-action-sheet v-model="City" @select="onSelect">
       <van-area 
       :area-list="areaList" 
       :columns-num="3" 
-      @change="onChangeAddress"
       :value="userInfo.district_id + ''"
       />
     </van-action-sheet>
@@ -139,20 +138,20 @@ export default {
         // this.columns=res.data.data
       })
     },
-    onConfirmAddress(val) {
-      this.showPopup = false;
-      // this.requestUpdateUserInfo({
-      //   province_id: val[0].code,
-      //   city_id: val[1].code,
-      //   district_id: val[2].code
-      // });
-      this.userInfo.province_name = val[0].name;
-      this.userInfo.city_name = val[1].name;
-      this.userInfo.district_name = val[2].name;
-      this.userInfo.province_id = val[0].code;
-      this.userInfo.city_id = val[1].code;
-      this.userInfo.district_id = val[2].code
-    },
+    // onConfirmAddress(val) {
+    //   this.showPopup = false;
+    //   // this.requestUpdateUserInfo({
+    //   //   province_id: val[0].code,
+    //   //   city_id: val[1].code,
+    //   //   district_id: val[2].code
+    //   // });
+    //   this.userInfo.province_name = val[0].name;
+    //   this.userInfo.city_name = val[1].name;
+    //   this.userInfo.district_name = val[2].name;
+    //   this.userInfo.province_id = val[0].code;
+    //   this.userInfo.city_id = val[1].code;
+    //   this.userInfo.district_id = val[2].code
+    // },
     async requestArea() {
       let obj = {};
       const province = await this.$api.userInfo.sonArea();
