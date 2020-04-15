@@ -12,12 +12,17 @@ const userInfo = {
   sonAreaID(obj, params) {
     return axios.get(`${base.userInfo}/app/sonArea/${obj}`);
   },
-  sonAreaSID(obj, params) {
-    return axios.get(`${base.userInfo}/app/sonArea/${obj}`);
+  // 图片
+  Public(params) {
+    return axios.post(`${base.password}/app/public/img`);
+  },
+  // 信息
+  user (obj) {
+    return axios.put(`${base.userInfo}/app/user`);
   },
   // 年级选择
   attribute(obj, params) {
-    return axios.get(`${base.userInfo}/app/module/attribute/${obj}`);
+    return axios.get(`${base.userInfo}/app/attribute/1`);
   },
   // 其他接口…………
 }

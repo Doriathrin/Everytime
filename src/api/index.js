@@ -32,6 +32,7 @@ import userInfo from '@/api/userInfo'
 import classify from '@/api/classify'
 // 我的学习
 import myStudy from '@/api/myStudy'
+
 // 导出接口
 export default {
   article,
@@ -48,6 +49,6 @@ export default {
   invite,
   userInfo,
   classify,
-  myStudy
+  myStudy,
   // ……
 }

@@ -157,6 +157,14 @@ const routes = [
       title: '我的特色课'
     }
   },
+  {
+    path: '/setInfo',
+    name: 'SetInfo',
+    component: () => import('@/information/SetInfo/SetInfo'),
+    meta: {
+      title: '性别'
+    }
+  },
   // {
   //   path: '/about',
   //   name: 'About',

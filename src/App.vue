@@ -50,7 +50,6 @@ export default {
       if (this.flags) {
         var touch;
         if (event.touches) {
-          console.log(event.touches);
           touch = event.touches[0];
         } else {
           touch = event;
