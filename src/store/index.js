@@ -9,11 +9,15 @@ export default new Vuex.Store({
     str: 1,
     config:'',
     user_id: '',
+    config: '',
     // token: '',
     smscodeData: '',
     personInfo: {},
   },
   mutations: {
+    SET_CONFIG(state, app) {
+      state.config = app
+    },
     tiao (state, str) {
       state.fontname = str
       console.log(str);

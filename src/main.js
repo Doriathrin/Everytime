@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import 'amfe-flexible/index'
 import './assets/border.css'
+import * as filters from './util/filter';
 import Vant from 'vant'
 
 import 'vant/lib/index.css'
@@ -17,7 +18,9 @@ import api from './api' // 导入api接口
 
 Vue.prototype.$api = api; // 将api挂载到vue的原型上
 
-
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
 
 fastClick.attach(document.body)
 Vue.use(Vant);

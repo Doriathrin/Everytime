@@ -28,7 +28,7 @@
         </div>
         <div class='lwq-mine'>
            <ul>
-             <li v-for='(item,key) of mineList' :key='key' :class="item.style" @click="onMineItem(item)">
+             <li v-for='(item,key) in mineList' :key='key' :class="item.style" @click="onMineItem(item)">
                <p class='lwq-count'>{{item.count}}</p>
                <p class='lwq-nameMing'>{{item.name}}</p>
                <p class='lwq-note'>{{item.note}}</p>
@@ -123,9 +123,9 @@ export default {
       this.$api.userInfo.userInfo().then((res)=>{
         console.log(res);
         this.userInfo=res.data
-        console.log(this.userInfo.data.id);
+        // console.log(this.userInfo.data.id);
         // this.requestMessage();
-        // this.requestCount();
+        this.requestCount();
       })
     },
     requestMessage(){
@@ -140,11 +140,11 @@ export default {
       })
     },
     requestCount() {
-      this.$api.login.Center().then(data => {
-        console.log(data)
-        // this.mineList[0].count = data.data.courses;
-        // this.mineList[1].count = data.data.oto;
-        // this.mineList[2].count = (data.data.integral / 100).toFixed(2);
+      this.$api.login.Center().then(res => {
+        console.log(res)
+        this.mineList[0].count = res.data.data.courses;
+        this.mineList[1].count = res.data.data.oto;
+        this.mineList[2].count = (res.data.data.integral / 100).toFixed(2);
       });
     },
   },

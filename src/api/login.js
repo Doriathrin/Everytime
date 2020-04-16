@@ -9,7 +9,7 @@ const login = {
     return axios.post(`${base.login}/app/message/classifyMessage`);
   },
   Center(obj, params) {
-    return axios.post(`${base.login}/app/getUCenterInfo`);
+    return axios.get(`${base.login}/app/getUCenterInfo`);
   },
   // 其他接口…………
 }

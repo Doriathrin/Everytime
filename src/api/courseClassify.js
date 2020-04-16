@@ -8,6 +8,9 @@ const course = {
   // get提交    
   courseClassify(id,params) {
     return axios.get(`${base.courseClassify}/app/courseClassify`, qs.stringify(params));
+  },
+  courseChapter(obj, params) {
+    return axios.post(`${base.courseClassify}/app/courseChapter?id=${obj.id}`, qs.stringify(params));
   }
   // 其他接口…………
 }

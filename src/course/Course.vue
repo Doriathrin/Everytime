@@ -24,7 +24,7 @@
               </ul>
             </div>
           </div>
-          <van-button @click="quxiao('kinds')">重置</van-button>
+          <van-button @click="quxiao">重置</van-button>
           <van-button  class='lwq-btn-que' @click="queren('kinds')">确认</van-button>
         </van-dropdown-item>
         <van-dropdown-item title="排序" ref='sort' >
@@ -162,6 +162,12 @@ export default {
           this.list=res.data.data.list;
         })
     },
+    quxiao(){
+      for (let i in this.attr_val_id) {
+        this.attr_val_id[i] = 0;
+      }
+      this.queren("kinds");
+    },
     queren(name){
       this.$refs[name].toggle();
       console.log(name);
@@ -169,14 +175,13 @@ export default {
           console.log(res);
           this.list=res.data.data.list;
         })
+      // this.$refs.list.quxiao();
     },
-    quxiao(name){
-      this.$refs[name].toggle();
-    },
+    
     selectId(id, attr) {                        //分类选项
             // this.str;
             // console.log(this.str);
-            this.form.attr_val_id=id
+            // this.form.attr_val_id=id
             // this.search(this.form)
             this.$set(this.attr_val_id, attr, id);
             // this.form;
@@ -201,6 +206,13 @@ export default {
     this.add();
     this.onLoad();
   },
+  watch: {
+    $route(val) {
+      if (val.name == "Course") {
+        this.$refs.list.quxiao();
+      }
+    }
+  }
  }
 </script>
 

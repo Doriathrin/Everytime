@@ -7,7 +7,7 @@ const courseInfo = {
   // },
   // get提交    
   courseInfo(obj, params) {
-    return axios.get(`${base.courseInfo}/app/courseInfo/basis_id=${obj.id}`, qs.stringify(params));
+    return axios.get(`${base.courseInfo}/app/courseInfo/basis_id=${obj.id}`);
   }
   // 其他接口…………
 }
