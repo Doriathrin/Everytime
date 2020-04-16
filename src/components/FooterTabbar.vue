@@ -22,30 +22,35 @@ export default {
           img: require("../assets/images/home.png"),
           img_hover: require("../assets/images/home-active.png"),
           title: "首页",
+          status:false,
           name: "/",
         },
         {
           img: require("../assets/images/course.png"),
           img_hover: require("../assets/images/course-active.png"),
           title: "课程",
+          status:false,
           name: "/course",
         },
         {
           img: require("../assets/images/study.png"),
           img_hover: require("../assets/images/study-active.png"),
           title: "约课记录",
+          status:false,
           name: "/records",
         },
         {
           img: require("../assets/images/question.png"),
           img_hover: require("../assets/images/user-active.png"),
           title: "练习",
+          status:false,
           name: "/practise",
         },
         {
           img: require("../assets/images/user.png"),
           img_hover: require("../assets/images/user-active.png"),
           title: "我的",
+          status:false,
           name: "/persona",
         }
       ]
@@ -55,6 +60,7 @@ export default {
   methods: {
     ...mapMutations(['tiao']),
     add (str) {
+      console.log(str);
       if(this.$router.push({name:'persona'})||localStorage.user_id){
         this.tiao(str);
         this.$router.push(str);
@@ -68,21 +74,8 @@ export default {
   computed: {
     ...mapState(['fontname', "config"])
   },
-  // watch: {
-  //   config(val) {
-  //     if (val.switch_question_module == 1) {
-  //       console.log(val);
-  //       this.list.splice(3, 0,{
-  //         img: require("../assets/images/question.png"),
-  //         img_hover: require("../assets/images/user-active.png"),
-  //         title: "练习",
-  //         name: "/practise",
-  //       },);
-  //     }
-  //   }
-  // },
   mounted () {
-
+    
   },
 }
 </script>

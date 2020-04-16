@@ -115,7 +115,7 @@ export default {
   },
   methods: {
     wode(id){
-      this.$router.push({name:'MyStudy',query:{'id':id}})
+      this.$router.push({name:'courseDetail',query:{'id':id}})
     },
     getScroll(event,form){
       let scrollBottom =

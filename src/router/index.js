@@ -165,6 +165,14 @@ const routes = [
       title: '性别'
     }
   },
+  {
+    path: '/courseDetail',
+    name: 'courseDetail',
+    component: () => import('@/course/courseDetail/courseDetail'),
+    meta: {
+      title: '课程详情'
+    }
+  },
   // {
   //   path: '/about',
   //   name: 'About',

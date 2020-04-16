@@ -6,8 +6,8 @@ const courseInfo = {
   //   return axios.get(`${base.courseClassify}/app/courseClassify`);
   // },
   // get提交    
-  courseInfo(id, params) {
-    return axios.get(`${base.courseInfo}/app/courseInfo/basis_id=${id}`, qs.stringify(params));
+  courseInfo(obj, params) {
+    return axios.get(`${base.courseInfo}/app/courseInfo/basis_id=${obj.id}`, qs.stringify(params));
   }
   // 其他接口…………
 }

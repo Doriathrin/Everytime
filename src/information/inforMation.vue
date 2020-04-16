@@ -93,19 +93,14 @@ export default {
       userInfo:{},
       showPopup:false,
       changeTag: "",
+      attrs: [],
       attrsColums:[],
       attrsSelectIdx: -1,
-      attrs: [],
       birthday:{
         minDate: new Date(1980, 0, 1),
         maxDate: new Date(2025, 10, 1),
         currentDate: new Date(),
       },
-      actions: [
-        { name: '拍照' },
-        { name: '从手机相册选择' },
-        { name: '取消' }
-      ],
       areaList: {
         province_list: {},
         city_list: {},
@@ -168,9 +163,10 @@ export default {
     onCancel() {
       this.showPopup = false;
     },
-    onConfirmBirthday(val) {
-      this.showPopup = false;
-      this.requestUpdateUserInfo({ birthday: val.format("yyyy-MM-dd") });
+    onConfirmBirthday(v) {
+      let youWant =v.getFullYear() + "-" + (v.getMonth() + 1) + "-" + v.getDate();
+      // console.log(youWant);
+      this.requestUpdateUserInfo({ birthday: youWant });
     },
     onConfirmAttrs(value, index) {
       // 年级
@@ -186,9 +182,10 @@ export default {
           attr_val_id: i.value[i.selectIdx].id
         });
       });
-      this.requestUpdateUserInfo({
-        user_attr: JSON.stringify(attrAry)
-      });
+      // this.requestUpdateUserInfo({
+      //   user_attr: JSON.stringify(attrAry)
+      // });
+      this.userInfo.user_attr = JSON.stringify(attrAry)
     },
     onChangeAvatar(e) {
       // 头像
@@ -232,11 +229,69 @@ export default {
           break;
       }
     },
-    
+    onConfirmAddress(val) {
+      this.showPopup = false;
+      // this.requestUpdateUserInfo({
+      //   province_id: val[0].code,
+      //   city_id: val[1].code,
+      //   district_id: val[2].code
+      // });
+      this.userInfo.province_name = val[0].name;
+      this.userInfo.city_name = val[1].name;
+      this.userInfo.district_name = val[2].name;
+      this.userInfo.province_id = val[0].code;
+      this.userInfo.city_id = val[1].code;
+      this.userInfo.district_id = val[2].code
+    },
+    requestArea() {
+      // 城市
+      this.$api.userInfo.sonArea().then((res)=>{
+        res=res.data.data
+        let obj={};
+        res.forEach((i)=>{
+          obj[i.id]=i.area_name;
+        });
+        this.areaList.province_list = obj;
+        const provinceID = this.userInfo.province_id || res[0].id;
+        console.log(res[0].id);
+        console.log(provinceID);
+        this.$api.userInfo.sonAreaID(provinceID).then((res1)=>{
+          console.log(res1);
+          res1=res1.data.data
+          obj={};
+          res1.forEach((i)=>{
+            obj[i.id]=i.area_name;
+          });
+          this.areaList.city_list = obj;
+          const cityID = this.userInfo.city_id || res1[0].id;
+          console.log(cityID);
+          this.$api.userInfo.sonAreaID(cityID).then(res2 => {
+            console.log(res2);
+            res2=res2.data.data
+            obj = {};
+            res2.forEach(i => {
+              obj[i.id] = i.area_name;
+            });
+            this.areaList.county_list = obj;
+            if (!this.userInfo.district_id && res2.length) {
+              this.userInfo.district_id = res2[0].id;
+            }
+          });
+        })
+      })
+    },
+    requestUpdateUserInfo(params) {
+      this.$api.userInfo.user(params).then((res) => {
+        // console.log(res);
+        this.$toast("数据更新成功");
+        this.requestUserInfo();
+      });
+    },
     requestUserInfo() {
       this.$api.userInfo.userInfo().then(data => {
         console.log(data);
         this.userInfo = data.data.data;
+        console.log( this.userInfo.birthday);
         // 生日
         if (this.userInfo.birthday == 0) {
           this.userInfo.birthday = "请选择";
@@ -261,82 +316,36 @@ export default {
         this.attrs = [];
         this.$api.userInfo.attribute().then(attrData => {
           attrData.data.data.forEach(i => {
-            if (i.value.length == 0) return;
-            // 修改
-            i.value.forEach(ci => {
-              ci.text = ci.name;
-              ci.parentIdx = this.attrs.length;
-            });
-            // 选中
-            i.selectIdx = -1;
-            for (const attri of this.userInfo.attr) {
-              if (attri.attr_id == i.id) {
-                for (let vali = 0; vali < i.value.length; ++vali) {
-                  if (attri.attr_val_id == i.value[vali].id) {
-                    i.selectIdx = vali;
-                    break;
-                  }
-                }
-                break;
-              }
+            if (i.value.length == 0)
+            {
+            	return false;
             }
-            // 压入
-            this.attrs.push(i);
+            if(i.id==1||i.id==2)
+            {
+	            // 修改
+	            i.value.forEach(ci => {
+	              ci.text = ci.name;
+	              ci.parentIdx = this.attrs.length;
+	            });
+	            // 选中
+	            i.selectIdx = -1;
+	            for (const attri of this.userInfo.attr) {
+	              if (attri.attr_id == i.id) {
+	                for (let vali = 0; vali < i.value.length; ++vali) {
+	                  if (attri.attr_val_id == i.value[vali].id) {
+	                    i.selectIdx = vali;
+	                    break;
+	                  }
+	                }
+	                break;
+	              }
+	            }
+	             // 压入
+           	 this.attrs.push(i);
+           }
           });
         });
         this.showPopup = false;
-      });
-    },
-    onConfirmAddress(val) {
-      // 城市
-      this.showPopup = false;
-      this.requestUpdateUserInfo({
-        province_id: val[0].code,
-        city_id: val[1].code,
-        district_id: val[2].code
-      });
-    },
-    requestArea() {
-      // 城市
-      this.$api.userInfo.sonAreaID().then((res)=>{
-        res=res.data.data
-        let obj={};
-        res.forEach((i)=>{
-          obj[i.id]=i.area_name;
-        });
-        this.areaList.province_list = obj;
-        const provinceID = this.userInfo.province_id || res[0].id;
-        console.log(res[0].id);
-        console.log(provinceID);
-        this.$api.userInfo.sonAreaID(provinceID).then((res1)=>{
-          console.log(res1);
-          res1=res1.data.data
-          obj={};
-          res1.forEach((i)=>{
-            obj[i.id]=i.area_name;
-          });
-          this.areaList.city_list = obj;
-          const cityID = this.userInfo.city_id || res1[0].id;
-          this.$api.userInfo.sonAreaID(cityID).then(res2 => {
-            console.log(res2);
-            res2=res2.data.data
-            obj = {};
-            res2.forEach(i => {
-              obj[i.id] = i.area_name;
-            });
-            this.areaList.county_list = obj;
-            if (!this.userInfo.district_id && res2.length) {
-              this.userInfo.district_id = res2[0].id;
-            }
-          });
-        })
-      })
-    },
-    requestUpdateUserInfo(params) {
-      this.$api.userInfo.user(params).then((res) => {
-        // console.log(res);
-        this.$toast("数据更新成功");
-        this.requestUserInfo();
       });
     },
   },
