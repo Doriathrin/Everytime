@@ -89,7 +89,7 @@ export default {
         limit: this.limit,
         ...this.params
       };
-      this.$http[this.method](this.url, obj).then(res => {
+      this.$api[this.method](this.url, obj).then(res => {
         this.loading = false;
         let data = res.comment || res;
         //console.log(data.list);

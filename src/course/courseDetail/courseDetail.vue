@@ -8,9 +8,9 @@
         <div class="h-title">
           <h3 v-if="top < 30">课程详情</h3>
           <p v-else>
-            <span :class="{'active':active=='tro'}" @click="scrollTo('tro')">课程介绍</span>
-            <span :class="{'active':active=='list'}" @click="scrollTo('list')">课程大纲</span>
-            <span :class="{'active':active=='com'}" @click="scrollTo('com')">课程评价</span>
+            <span :class="{'active':active=='lwq-tro'}" @click="scrollTo('tro')">课程介绍</span>
+            <span :class="{'active':active=='lwq-list'}" @click="scrollTo('list')">课程大纲</span>
+            <span :class="{'active':active=='lwq-com'}" @click="scrollTo('com')">课程评价</span>
           </p>
         </div>
         <p class="right-tabs">
@@ -20,7 +20,7 @@
         </p>
       </header>
     </div>
-    <div class='lwq-nrong' v-show="detail.title">
+    <div class='lwq-nrong' v-show="detail.title" @scroll.passive="getScroll($event)">
       <div class="cd-info">
         <p class="info-title">{{detail.title}}</p>
         <i class="info-collect" :class="{'ic-active':detail.is_collect}" @click="collect"></i>
@@ -107,6 +107,7 @@
 </template>
 
 <script>
+import charpter from '../charpter/Charpter'
 import commentItem from '../commentItem/commentItem'
 export default {
   name: 'courseDetail',
@@ -121,7 +122,8 @@ export default {
     }
   },
   components: {
-    commentItem
+    commentItem,
+    charpter
   },
   methods: {
     getDetail(){
@@ -176,37 +178,37 @@ export default {
         })
         .then(res => {
           console.log(res);
-          this.list = res.data.data[0];
+          this.list = res.data.data;
           console.log(this.list);
         });
     },
-    handleScroll() {
-      this.top =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop;
-      let a_h = window.$("#tro").offset().top - 45;
-      let l_h = window.$("#list").offset().top - 45;
-      let r_h = window.$("#com").offset().top - 45;
-      if (this.top <= a_h) {
-        this.active = "tro";
-      } else if (this.top <= l_h) {
-        this.active = "list";
-      } else if (this.top >= r_h) {
-        this.active = "com";
-      }
-    },
+    // handleScroll() {
+    //   this.top =
+    //     window.pageYOffset ||
+    //     document.documentElement.scrollTop ||
+    //     document.body.scrollTop;
+    //   let a_h = window.$(".lwq-tro").offset().top - 45;
+    //   let l_h = window.$(".lwq-list").offset().top - 45;
+    //   let r_h = window.$(".lwq-com").offset().top - 45;
+    //   if (this.top <= a_h) {
+    //     this.active = "tro";
+    //   } else if (this.top <= l_h) {
+    //     this.active = "list";
+    //   } else if (this.top >= r_h) {
+    //     this.active = "com";
+    //   }
+    // },
     scrollTo(name) {
       this.active = name;
-      let h = window.$(`#${name}`).offset().top - 45;
-      window.$("html,body").animate({ scrollTop: h }, 500);
+      // let h = window.$(`#${name}`).offset().top - 45;
+      // window.$("html,body").animate({ scrollTop: h }, 500);
     },
-    // getScroll(event) {                            //下拉加载
-    //         // 滚动条距离头部的距离scrollBottom
-    //         let scrollBottom =event.target.scrollTop ;
-    //         this.top=scrollBottom;
-    //         // console.log(scrollBottom);
-    //     },
+    getScroll(event) {                            //下拉加载
+            // 滚动条距离头部的距离scrollBottom
+            let scrollBottom =event.target.scrollTop ;
+            this.top=scrollBottom;
+            // console.log(scrollBottom);
+        },
     init(){
       this.id=this.$route.query.id;
       this.getDetail();
@@ -225,10 +227,11 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener("scroll", this.handleScroll());
+    console.log(this.handleScroll());
   },
   destroyed() {
-    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener("scroll", this.handleScroll());
   },
  }
 </script>

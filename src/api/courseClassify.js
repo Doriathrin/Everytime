@@ -11,6 +11,18 @@ const course = {
   },
   courseChapter(obj, params) {
     return axios.post(`${base.courseClassify}/app/courseChapter?id=${obj.id}`, qs.stringify(params));
+  },
+  getPlayToken(obj, params) {
+    return axios.get(`${base.courseClassify}/app/getPlayToken/video_id=${obj.video_id}/course_id=${obj.course_id}`, qs.stringify(params));
+  },
+  chapterInfo(obj, params) {
+    return axios.get(`${base.courseClassify}/app/chapterInfo/${obj.id}`, qs.stringify(params));
+  },
+  getPcRoomCode(obj, params) {
+    return axios.get(`${base.courseClassify}/app/getPcRoomCode/course_id=${obj.course_id}/chapter_id=${obj.chapter_id}`, qs.stringify(params));
+  },
+  chapterDatum(obj, params) {
+    return axios.get(`${base.courseClassify}/app/chapterDatum/${obj.datum_id}/chapter_id=${obj.file_id}`, qs.stringify(params));
   }
   // 其他接口…………
 }
