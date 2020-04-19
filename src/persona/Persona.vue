@@ -5,22 +5,22 @@
         <div class='lwq-info'>
           <section class='lwq-login' @click="geRen">
             <div class='lwq-avatar'>
-              <img v-if='user_id' :src="userInfo.data.avatar || headerImg" alt="">
+              <img v-if='user_id' :src="userInfo.avatar || headerImg" alt="">
               <img class="hea" v-else src="~@/assets/images/avatar.png" />
                 <img
                   class="vip-logo"
-                  v-if="user_id&&userInfo.data.is_vip"
+                  v-if="user_id&&userInfo.is_vip"
                   src="~@/assets/images/皇冠-2@2x.png"
                 />
                 <img
                   class="vip-logo"
-                  v-if="user_id&&!userInfo.data.is_vip"
+                  v-if="user_id&&!userInfo.is_vip"
                   src="~@/assets/images/皇冠-2 拷贝@2x.png"
                 />
             </div>
             <div class='lwq-extra'>
               <p class='lwq-name' >
-                <span>{{userInfo.data.nickname}}</span>
+                <span>{{userInfo.nickname}}</span>
               </p>
               <p class='iconfont edit'>&#xe603;</p>
             </div>
@@ -53,6 +53,7 @@ export default {
     return {
       user_id: JSON.parse(localStorage.getItem("user_id")) || "",
       userInfo:{},
+      list:[],
       headerImg: require("@/assets/images/user_Headportrait.png"),
       mineList: [
         {
@@ -122,7 +123,7 @@ export default {
     login(){
       this.$api.userInfo.userInfo().then((res)=>{
         console.log(res);
-        this.userInfo=res.data
+        this.userInfo=res.data.data
         // console.log(this.userInfo.data.id);
         // this.requestMessage();
         this.requestCount();

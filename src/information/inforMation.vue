@@ -253,8 +253,6 @@ export default {
         });
         this.areaList.province_list = obj;
         const provinceID = this.userInfo.province_id || res[0].id;
-        console.log(res[0].id);
-        console.log(provinceID);
         this.$api.userInfo.sonAreaID(provinceID).then((res1)=>{
           console.log(res1);
           res1=res1.data.data
