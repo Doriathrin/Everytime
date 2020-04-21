@@ -96,6 +96,7 @@ export default {
       attrs: [],
       attrsColums:[],
       attrsSelectIdx: -1,
+      sonArea:0,
       birthday:{
         minDate: new Date(1980, 0, 1),
         maxDate: new Date(2025, 10, 1),
@@ -201,13 +202,13 @@ export default {
       // console.log(picker, data, index);
       switch (index) {
         case 0:
-          this.$api.userInfo.sonAreaID(data[index].code).then((res) => {
+          this.$api.userInfo.sonArea(data[index].code).then((res) => {
             let obj = {};
             res.data.data.forEach((i) => {
               obj[i.id] = i.area_name;
             });
             this.areaList.city_list = obj;
-            this.$api.userInfo.sonAreaID(res.data.data.id).then((res1) => {
+            this.$api.userInfo.sonArea(res.data.data.id).then((res1) => {
               obj = {};
               res1.data.data.forEach((i) => {
                 obj[i.id] = i.area_name;
@@ -217,7 +218,7 @@ export default {
           });
           break;
         case 1:
-          this.$api.userInfo.sonAreaID(data[index].code).then((res) => {
+          this.$api.userInfo.sonArea(data[index].code).then((res) => {
             let obj = {};
             res.data.data.forEach((i) => {
               obj[i.id] = i.area_name;
@@ -245,7 +246,8 @@ export default {
     },
     requestArea() {
       // 城市
-      this.$api.userInfo.sonArea().then((res)=>{
+      this.$api.userInfo.sonArea(this.sonArea).then((res)=>{
+        console.log(res);
         res=res.data.data
         let obj={};
         res.forEach((i)=>{
@@ -253,8 +255,8 @@ export default {
         });
         this.areaList.province_list = obj;
         const provinceID = this.userInfo.province_id || res[0].id;
-        this.$api.userInfo.sonAreaID(provinceID).then((res1)=>{
-          console.log(res1);
+        this.$api.userInfo.sonArea(provinceID).then((res1)=>{
+          console.log(res1.data);
           res1=res1.data.data
           obj={};
           res1.forEach((i)=>{
@@ -263,7 +265,7 @@ export default {
           this.areaList.city_list = obj;
           const cityID = this.userInfo.city_id || res1[0].id;
           console.log(cityID);
-          this.$api.userInfo.sonAreaID(cityID).then(res2 => {
+          this.$api.userInfo.sonArea(cityID).then(res2 => {
             console.log(res2);
             res2=res2.data.data
             obj = {};

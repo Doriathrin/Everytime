@@ -7,9 +7,6 @@ const userInfo = {
   },
   // 城市选择
   sonArea(obj, params) {
-    return axios.get(`${base.userInfo}/app/sonArea/0`);
-  },
-  sonAreaID(obj, params) {
     return axios.get(`${base.userInfo}/app/sonArea/${obj}`);
   },
   // 图片
@@ -18,7 +15,7 @@ const userInfo = {
   },
   // 信息
   user (obj) {
-    return axios.put(`${base.userInfo}/app/user`);
+    return axios.put(`${base.userInfo}/app/user`,obj);
   },
   // 年级选择
   attribute(obj, params) {
