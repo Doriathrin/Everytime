@@ -6,7 +6,6 @@
     <div class='lwq-nav'>
       <van-tabs v-model="active">
         <van-tab title="待上课">
-          {{this.id}}
           <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
              <button @click="yue">立即预约</button>
           </van-pull-refresh>

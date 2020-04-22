@@ -23,12 +23,10 @@
               <div>
                 {{item.real_name}}
               </div>
-              <div>
-                {{item.teach_age}}年教龄
+              <div class='lwq-teach'>
+                <p>{{list.sex == 1 ? '女':'男'}} {{list.teach_age}}年教龄</p>
               </div>
-              <p v-if='item.sex=="0"'>男</p>
-              <p v-if='item.sex=="1"'>女</p>
-              <div>
+              <div class='lwq-nan'>
                 <button @click="yuyue(item.teacher_id)">立即预约</button>
               </div>
             </dd>
@@ -105,13 +103,32 @@ header{
     height:50px;
   }
   dl{
+    width:350px;
+    height:100px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background:whitesmoke;
     display: flex;
+    dt{
+      line-height: 140px;
+      margin-left: 10px;
+      img{
+        width:50px;
+        height:50px;
+        border-radius: 50px;
+      }
+    }
     dd{
+      margin-top: 15px;
+      margin-left: 30px;
       div{
         display: flex;
       }
+      .lwq-teach{
+        font-size: 13px;
+      }
+      
     }
-    
   }
 }
 </style>
